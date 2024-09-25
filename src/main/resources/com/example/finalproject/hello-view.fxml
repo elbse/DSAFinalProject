@@ -6,17 +6,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="MailnAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="999.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #000080, #00001A);" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="MailnAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="999.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #000080, #00001A);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="528.0" fitWidth="640.0" layoutX="640.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@/image 1.png" />
-         </image>
-      </ImageView>
       <Text fill="GOLD" layoutX="666.0" layoutY="711.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Building Character, Creating Leaders. " wrappingWidth="1152.71923828125">
          <font>
             <Font name="Impact" size="39.0" />
          </font>
       </Text>
+      <ImageView fitHeight="461.0" fitWidth="756.0" layoutX="582.0" layoutY="265.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../AngaUnivLogo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
