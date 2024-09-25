@@ -10,7 +10,7 @@
    <children>
       <ImageView fitHeight="528.0" fitWidth="640.0" layoutX="640.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@/image 1.png" />
+            <Image url="@AngaUnivLogo.png"/>
          </image>
       </ImageView>
       <Text fill="GOLD" layoutX="666.0" layoutY="711.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Building Character, Creating Leaders. " wrappingWidth="1152.71923828125">
