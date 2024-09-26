@@ -8,8 +8,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane fx:id="Homepage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="999.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="Homepage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="999.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="Pane1" prefHeight="125.0" prefWidth="1929.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FFD700, #AF4909);">
          <children>
@@ -24,7 +25,6 @@
                </font>
             </Text>
          </children></Pane>
-      <Pane fx:id="SearchHomePage" layoutX="585.0" layoutY="157.0" prefHeight="94.0" prefWidth="603.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000080; -fx-border-width: 5;" />
       <Pane fx:id="WelcomeHomePage" layoutX="585.0" layoutY="290.0" prefHeight="277.0" prefWidth="1255.0" style="-fx-background-color: #000080; -fx-background-radius: 35;" />
       <Pane fx:id="StudentStats" layoutX="585.0" layoutY="587.0" prefHeight="390.0" prefWidth="588.0" style="-fx-background-color: #000080; -fx-background-radius: 35;" />
       <Pane fx:id="CourseStats" layoutX="1252.0" layoutY="587.0" prefHeight="390.0" prefWidth="588.0" style="-fx-background-color: #000080; -fx-background-radius: 35;" />
@@ -38,5 +38,6 @@
             <Circle centerX="55.0" centerY="47.0" radius="47.0" />
          </clip>
       </ImageView>
+      <TextFlow layoutX="589.0" layoutY="165.0" prefHeight="93.0" prefWidth="513.0" style="-fx-background-radius: 35; -fx-background-color: #000008;" />
    </children>
 </AnchorPane>
