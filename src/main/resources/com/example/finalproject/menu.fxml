@@ -14,7 +14,7 @@
    <children>
       <Pane fx:id="Pane1" prefHeight="125.0" prefWidth="1929.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FFD700, #AF4909);">
          <children>
-            <ImageView fitHeight="110.0" fitWidth="187.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="117.0" fitWidth="189.0" layoutX="-4.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../AngaUnivLogo.png" />
                </image>
@@ -28,7 +28,7 @@
       <Pane fx:id="WelcomeHomePage" layoutX="585.0" layoutY="290.0" prefHeight="277.0" prefWidth="1255.0" style="-fx-background-color: #000080; -fx-background-radius: 35;" />
       <Pane fx:id="StudentStats" layoutX="585.0" layoutY="587.0" prefHeight="390.0" prefWidth="588.0" style="-fx-background-color: #000080; -fx-background-radius: 35;" />
       <Pane fx:id="CourseStats" layoutX="1252.0" layoutY="587.0" prefHeight="390.0" prefWidth="588.0" style="-fx-background-color: #000080; -fx-background-radius: 35;" />
-      <VBox layoutX="39.0" layoutY="147.0" prefHeight="820.0" prefWidth="501.0" style="-fx-background-color: #000080; -fx-background-radius: 35;" />
+      <VBox layoutX="39.0" layoutY="159.0" prefHeight="820.0" prefWidth="501.0" style="-fx-background-color: #000080; -fx-background-radius: 35;" />
       <Circle fx:id="CircleProfile" fill="#000080" layoutX="1737.0" layoutY="210.0" radius="53.0" stroke="BLACK" strokeType="INSIDE" />
       <ImageView fx:id="siKevin" fitHeight="125.0" fitWidth="100.0" layoutX="1684.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -38,6 +38,6 @@
             <Circle centerX="55.0" centerY="47.0" radius="47.0" />
          </clip>
       </ImageView>
-      <TextFlow layoutX="589.0" layoutY="165.0" prefHeight="93.0" prefWidth="513.0" style="-fx-background-radius: 35; -fx-background-color: #000008;" />
+      <TextFlow fx:id="SearchMenu" layoutX="589.0" layoutY="165.0" prefHeight="93.0" prefWidth="513.0" style="-fx-background-radius: 35; -fx-background-color: #000008;" />
    </children>
 </AnchorPane>

@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="MailnAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="999.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #000080, #00001A);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="416.0" fitWidth="705.0" layoutX="608.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="433.0" fitWidth="723.0" layoutX="604.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../AngaUnivLogo_Inverted_-removebg-preview.png" />
          </image>

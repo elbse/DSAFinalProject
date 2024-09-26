@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.CourseList">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.CourseList">
    <children>
       <Pane fx:id="Pane1" layoutX="-2.0" layoutY="-18.0" prefHeight="159.0" prefWidth="1934.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FFD700, #AF4909);">
          <children>
