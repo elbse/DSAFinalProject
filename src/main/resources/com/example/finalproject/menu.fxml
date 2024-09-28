@@ -14,13 +14,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="Homepage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="999.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="Homepage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="999.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="Pane1" prefHeight="125.0" prefWidth="1929.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FFD700, #AF4909);">
          <children>
             <ImageView fitHeight="117.0" fitWidth="189.0" layoutX="-4.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../AngaUnivLogo.png" />
+                  <Image url="@../../../Images/AngaUnivLogo.png" />
                </image>
             </ImageView>
             <Text layoutX="157.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NGA UNIVERSITY">
@@ -36,7 +36,7 @@
          <children>
             <Pane prefHeight="176.0" prefWidth="495.0">
                <children>
-                  <Button fx:id="studentListPane" layoutY="23.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="501.0" stylesheets="@../../../../../values/style.css" text="Student List" textAlignment="CENTER">
+                  <Button fx:id="studentListPane" layoutY="23.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="501.0" stylesheets="@../../../values/style.css" text="Student List" textAlignment="CENTER">
                      <font>
                         <Font name="Bodoni MT Condensed" size="10.0" />
                      </font>
@@ -47,41 +47,41 @@
                   </Button>
                   <ImageView fitHeight="125.0" fitWidth="130.0" layoutX="51.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Icon.png" />
+                        <Image url="@../../../Images/Icon.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
             <Pane prefHeight="147.0" prefWidth="508.0">
                <children>
-                  <Button layoutY="-1.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="501.0" stylesheets="@../../../../../values/style.css" text="Course List">
+                  <Button layoutY="-1.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="501.0" stylesheets="@../../../values/style.css" text="Course List">
                      <styleClass>
                         <String fx:value="menu-panel" />
                         <String fx:value="my-button-class" />
                      </styleClass></Button>
                   <ImageView fitHeight="125.0" fitWidth="100.0" layoutX="65.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../CourseListIcon.png" />
+                        <Image url="@../../../Images/CourseListIcon.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
             <Pane prefHeight="161.0" prefWidth="501.0">
                <children>
-                  <Button layoutX="-1.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="503.0" styleClass="menu-panel" stylesheets="@../../../../../values/style.css" text="Merge" />
+                  <Button layoutX="-1.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="503.0" styleClass="menu-panel" stylesheets="@../../../values/style.css" text="Merge" />
                   <ImageView fitHeight="125.0" fitWidth="100.0" layoutX="68.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../MergeIcon.png" />
+                        <Image url="@../../../Images/MergeIcon.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
             <Pane prefHeight="207.0" prefWidth="518.0">
                <children>
-                  <Button layoutX="-1.0" layoutY="-6.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="504.0" styleClass="menu-panel" stylesheets="@../../../../../values/style.css" text="Exit" />
+                  <Button layoutX="-1.0" layoutY="-6.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="504.0" styleClass="menu-panel" stylesheets="@../../../values/style.css" text="Exit" />
                   <ImageView fitHeight="125.0" fitWidth="100.0" layoutX="70.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../ExitIcon.png" />
+                        <Image url="@../../../Images/ExitIcon.png" />
                      </image>
                   </ImageView>
                </children>
@@ -90,20 +90,20 @@
       <Circle fx:id="CircleProfile" fill="#000080" layoutX="1737.0" layoutY="210.0" radius="53.0" stroke="BLACK" strokeType="INSIDE" />
       <ImageView fx:id="siKevin" fitHeight="125.0" fitWidth="100.0" layoutX="1684.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Founder.png" />
+            <Image url="@../../../Images/Founder.png" />
          </image>
          <clip>
             <Circle centerX="55.0" centerY="47.0" radius="47.0" />
          </clip>
       </ImageView>
-      <HBox fx:id="hboxSeach" layoutX="591.0" layoutY="168.0" prefHeight="94.0" prefWidth="628.0" stylesheets="@../../../../../values/style.css">
+      <HBox fx:id="hboxSeach" layoutX="591.0" layoutY="168.0" prefHeight="94.0" prefWidth="628.0" stylesheets="@../../../values/style.css">
          <children>
-            <TextField fx:id="TextFieldSearch" alignment="BASELINE_LEFT" editable="false" prefHeight="94.0" prefWidth="499.0" styleClass="transparent" stylesheets="@../../../../../values/style.css">
+            <TextField fx:id="TextFieldSearch" alignment="BASELINE_LEFT" editable="false" prefHeight="94.0" prefWidth="499.0" styleClass="transparent" stylesheets="@../../../values/style.css">
                <padding>
                   <Insets left="10.0" />
                </padding>
             </TextField>
-            <Button fx:id="SearchButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="130.0" styleClass="rounded-corner" stylesheets="@../../../../../values/style.css" text="Search">
+            <Button fx:id="SearchButton" mnemonicParsing="false" prefHeight="94.0" prefWidth="130.0" styleClass="rounded-corner" stylesheets="@../../../values/style.css" text="Search">
                <font>
                   <Font size="30.0" />
                </font>

@@ -58,7 +58,7 @@
       </ImageView>
       <ImageView fitHeight="117.0" fitWidth="189.0" layoutX="6.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../AngaUnivLogo.png" />
+            <Image url="@../../../Images/AngaUnivLogo.png" />
          </image>
       </ImageView>
 

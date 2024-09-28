@@ -67,7 +67,7 @@
       </Button>
       <ImageView fitHeight="117.0" fitWidth="189.0" layoutX="16.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../AngaUnivLogo.png" />
+            <Image url="@../../../Images/AngaUnivLogo.png" />
          </image>
       </ImageView>
       <Text layoutX="177.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NGA UNIVERSITY">
