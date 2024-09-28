@@ -21,9 +21,16 @@
 
 .menu-panel{
 -fx-background-color: transparent;
-fx-font-size: 40px;
+-fx-padding: 10;
 }
 
 .menu-panel:hover {
     -fx-background-color: white;
+    -fx-opacity: 0.4;
 }
+
+.my-button-class{
+    font-weight: bolder !important;
+    font-size: 5    rem !important;
+    color: blue !important;
+};
