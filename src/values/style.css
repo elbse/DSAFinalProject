@@ -1,0 +1,17 @@
+.search-box {
+  -fx-background-color: transparent;
+     -fx-border-color: #000000;
+     -fx-border-radius: 100;
+     -fx-border-width: 2;
+     -fx-padding: 10;
+}
+
+.transparent{
+  -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.rounded-corner{
+-fx-background-radius: 100;
+-fx-padding: 10;
+}

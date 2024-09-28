@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane fx:id="Homepage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="999.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -25,10 +28,48 @@
                </font>
             </Text>
          </children></Pane>
-      <Pane fx:id="WelcomeHomePage" layoutX="585.0" layoutY="290.0" prefHeight="277.0" prefWidth="1255.0" style="-fx-background-color: #000080; -fx-background-radius: 35;" />
+      <Pane fx:id="WelcomeHomePage" layoutX="585.0" layoutY="290.0" prefHeight="277.0" prefWidth="1255.0" style="-fx-background-color: #000080; -fx-background-radius: 15;" />
       <Pane fx:id="StudentStats" layoutX="585.0" layoutY="587.0" prefHeight="390.0" prefWidth="588.0" style="-fx-background-color: #000080; -fx-background-radius: 35;" />
       <Pane fx:id="CourseStats" layoutX="1252.0" layoutY="587.0" prefHeight="390.0" prefWidth="588.0" style="-fx-background-color: #000080; -fx-background-radius: 35;" />
-      <VBox layoutX="39.0" layoutY="159.0" prefHeight="820.0" prefWidth="501.0" style="-fx-background-color: #000080; -fx-background-radius: 35;" />
+      <VBox layoutX="39.0" layoutY="159.0" prefHeight="820.0" prefWidth="501.0" style="-fx-background-color: #000080; -fx-background-radius: 35;">
+         <children>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="125.0" fitWidth="130.0" layoutX="30.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="125.0" fitWidth="100.0" layoutX="30.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../CourseListIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="125.0" fitWidth="100.0" layoutX="30.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../MergeIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="125.0" fitWidth="100.0" layoutX="30.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../ExitIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children></VBox>
       <Circle fx:id="CircleProfile" fill="#000080" layoutX="1737.0" layoutY="210.0" radius="53.0" stroke="BLACK" strokeType="INSIDE" />
       <ImageView fx:id="siKevin" fitHeight="125.0" fitWidth="100.0" layoutX="1684.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -38,6 +79,15 @@
             <Circle centerX="55.0" centerY="47.0" radius="47.0" />
          </clip>
       </ImageView>
-      <TextFlow fx:id="SearchMenu" layoutX="589.0" layoutY="165.0" prefHeight="93.0" prefWidth="513.0" style="-fx-background-radius: 35; -fx-background-color: #000008;" />
+      <HBox fx:id="hboxSeach" layoutX="619.0" layoutY="168.0" prefHeight="94.0" prefWidth="600.0" stylesheets="@../../../../../values/style.css">
+         <children>
+            <TextField fx:id="TextFieldSearch" alignment="BASELINE_LEFT" editable="false" prefHeight="97.0" prefWidth="500.0" styleClass="transparent" stylesheets="@../../../../../values/style.css" />
+            <Button fx:id="SearchButton" mnemonicParsing="false" prefHeight="76.0" prefWidth="75.0" text="Search" />
+         </children>
+         <styleClass>
+            <String fx:value="search-box" />
+            <String fx:value="search-box" />
+         </styleClass>
+      </HBox>
    </children>
 </AnchorPane>
