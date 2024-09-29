@@ -26,3 +26,13 @@
     -fx-background-color: red;
     -fx-text-fill: white;
 }
+
+.jfx-hamburger {
+    -fx-background-color: transparent;
+}
+
+.jfx-hamburger .burger-icon {
+    -fx-padding: 10;
+    -fx-spacing: 5;
+    -fx-background-color: white;
+}
