@@ -1,21 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@CourseL.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.CourseList">
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.CourseList">
    <children>
-      <Pane fx:id="Pane1" layoutX="-2.0" layoutY="-18.0" prefHeight="159.0" prefWidth="1934.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FFD700, #AF4909);">
+
+      <Pane layoutX="0.0" layoutY="0.0" prefHeight="150.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FFD700, #AF4909);">
          <children>
-            <ImageView fitHeight="170.0" fitWidth="200.0" layoutX="7.0" layoutY="-9.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@/image 1.png" />
-               </image>
-            </ImageView>
+
+            <TextField layoutX="1600.0" layoutY="40.0" prefHeight="40.0" prefWidth="300.0" promptText="Search" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
          </children>
       </Pane>
+
+
+      <TableView layoutX="104.0" layoutY="271.0" prefHeight="600.0" prefWidth="1700.0" style="-fx-background-color: white; -fx-border-color: #FFD700; -fx-border-width: 2px; -fx-border-radius: 10;">
+         <columns>
+            <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="Course Code" />
+            <TableColumn prefWidth="1000" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="Course Title and Description" />
+            <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="No. of Students" />
+         </columns>
+      </TableView>
+
+      <Button layoutX="492.0" layoutY="944.0" style="-fx-background-color: yellow; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="ADD COURSE">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0">
+               <image>
+                  <Image url="@/path_to_add_icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+
+      <Button layoutX="1206.0" layoutY="949.0" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE COURSE">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0">
+               <image>
+                  <Image url="@/path_to_delete_icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+
+      <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="700.0" layoutY="400.0" opacity="0.1" preserveRatio="true">
+         <image>
+            <Image url="@/path_to_logo_watermark.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="117.0" fitWidth="189.0" layoutX="6.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Images/AngaUnivLogo.png" />
+         </image>
+      </ImageView>
+
+      <TextField editable="false" layoutX="312.0" layoutY="188.0" style="-fx-font-size: 18; -fx-background-color: transparent; -fx-text-fill: white;" text="Home &gt; Course List" />
+      <Text layoutX="167.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NGA UNIVERSITY">
+         <font>
+            <Font name="Impact" size="45.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
