@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -62,11 +63,12 @@
          </image>
       </ImageView>
 
-      <TextField editable="false" layoutX="312.0" layoutY="188.0" style="-fx-font-size: 18; -fx-background-color: transparent; -fx-text-fill: white;" text="Home &gt; Course List" />
+      <TextField editable="false" layoutX="310.0" layoutY="199.0" style="-fx-font-size: 18; -fx-background-color: transparent; -fx-text-fill: white;" text="Home &gt; Course List" />
       <Text layoutX="167.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NGA UNIVERSITY">
          <font>
             <Font name="Impact" size="45.0" />
          </font>
       </Text>
+      <JFXHamburger layoutX="142.0" layoutY="188.0" prefHeight="55.0" prefWidth="106.0" />
    </children>
 </AnchorPane>
