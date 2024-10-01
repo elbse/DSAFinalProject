@@ -29,7 +29,10 @@
       </Pane>
 
       <!-- Pane for Course Title -->
-      <Pane layoutX="110.0" layoutY="160.0" prefHeight="50.0" prefWidth="1700.0" />
+      <Pane layoutX="110.0" layoutY="160.0" prefHeight="50.0" prefWidth="1700.0">
+         <children>
+            <TextField editable="false" layoutX="68.0" layoutY="31.0" style="-fx-font-size: 18; -fx-background-color: transparent; -fx-text-fill: white;" text="Home &gt; Merge Course" />
+         </children></Pane>
 
       <!-- Watermark Logo -->
       <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="700.0" layoutY="400.0" opacity="0.1" preserveRatio="true">
@@ -61,10 +64,9 @@
           <TableColumn prefWidth="376.0" text="COURSE LIST" />
         </columns>
       </TableView>
-      <TextField editable="false" layoutX="320.0" layoutY="194.0" style="-fx-font-size: 18; -fx-background-color: transparent; -fx-text-fill: white;" text="Home &gt; Course List" />
-      <JFXHamburger layoutX="152.0" layoutY="183.0" prefHeight="55.0" prefWidth="106.0" />
 
       <!-- Search Bar -->
       <TextField layoutX="1580.0" layoutY="204.0" prefHeight="40.0" prefWidth="300.0" promptText="Search" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
+      <JFXHamburger layoutX="83.0" layoutY="175.0" prefHeight="72.0" prefWidth="70.0" />
    </children>
 </AnchorPane>

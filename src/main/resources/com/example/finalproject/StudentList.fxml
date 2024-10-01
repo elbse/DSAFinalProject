@@ -75,8 +75,8 @@
       </Text>
       
       <Text fill="WHITE" layoutX="145.0" layoutY="273.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black;" text="CCE 001 - FUNDAMENTALS OF PROGRAMMING (12345)" />
-      <TextField editable="false" layoutX="249.0" layoutY="194.0" style="-fx-font-size: 18; -fx-background-color: transparent; -fx-text-fill: white;" text="Home &gt; Course List" />
-      <JFXHamburger layoutX="85.0" layoutY="183.0" prefHeight="55.0" prefWidth="106.0" />
+      <TextField editable="false" layoutX="178.0" layoutY="191.0" style="-fx-font-size: 18; -fx-background-color: transparent; -fx-text-fill: white;" text="Home &gt; Student List" />
+      <JFXHamburger layoutX="65.0" layoutY="183.0" prefHeight="55.0" prefWidth="106.0" />
 
 
       <TextField layoutX="1580.0" layoutY="203.0" prefHeight="40.0" prefWidth="300.0" promptText="Search" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
