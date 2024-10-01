@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@CourseL.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.MergeList">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@CourseL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.MergeList">
 
    <children>
 
@@ -25,9 +25,6 @@
                   <Image url="@/path_to_logo.png" />
                </image>
             </ImageView>
-
-            <!-- Search Bar -->
-            <TextField layoutX="1600.0" layoutY="40.0" prefHeight="40.0" prefWidth="300.0" promptText="Search" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
          </children>
       </Pane>
 
@@ -66,5 +63,8 @@
       </TableView>
       <TextField editable="false" layoutX="320.0" layoutY="194.0" style="-fx-font-size: 18; -fx-background-color: transparent; -fx-text-fill: white;" text="Home &gt; Course List" />
       <JFXHamburger layoutX="152.0" layoutY="183.0" prefHeight="55.0" prefWidth="106.0" />
+
+      <!-- Search Bar -->
+      <TextField layoutX="1580.0" layoutY="204.0" prefHeight="40.0" prefWidth="300.0" promptText="Search" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
    </children>
 </AnchorPane>

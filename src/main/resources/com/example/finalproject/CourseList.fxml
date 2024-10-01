@@ -12,19 +12,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@CourseL.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.CourseList">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@CourseL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.CourseList">
 
    <children>
 
-      <Pane layoutX="0.0" layoutY="0.0" prefHeight="150.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FFD700, #AF4909);">
-         <children>
-
-            <TextField layoutX="1600.0" layoutY="40.0" prefHeight="40.0" prefWidth="300.0" promptText="Search" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
-         </children>
-      </Pane>
+      <Pane layoutX="0.0" layoutY="0.0" prefHeight="150.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FFD700, #AF4909);" />
 
 
-      <TableView layoutX="104.0" layoutY="271.0" prefHeight="600.0" prefWidth="1700.0" style="-fx-background-color: white; -fx-border-color: #FFD700; -fx-border-width: 2px; -fx-border-radius: 10;">
+      <TableView layoutX="104.0" layoutY="301.0" prefHeight="600.0" prefWidth="1700.0" style="-fx-background-color: white; -fx-border-color: #FFD700; -fx-border-width: 2px; -fx-border-radius: 10;">
          <columns>
             <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="Course Code" />
             <TableColumn prefWidth="1000" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="Course Title and Description" />
@@ -42,7 +37,7 @@
          </graphic>
       </Button>
 
-      <Button layoutX="1206.0" layoutY="949.0" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE COURSE">
+      <Button layoutX="1174.0" layoutY="940.0" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE COURSE">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="24.0">
                <image>
@@ -57,18 +52,20 @@
             <Image url="@/path_to_logo_watermark.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="117.0" fitWidth="189.0" layoutX="6.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="117.0" fitWidth="189.0" layoutX="16.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Images/AngaUnivLogo.png" />
          </image>
       </ImageView>
 
       <TextField editable="false" layoutX="310.0" layoutY="199.0" style="-fx-font-size: 18; -fx-background-color: transparent; -fx-text-fill: white;" text="Home &gt; Course List" />
-      <Text layoutX="167.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NGA UNIVERSITY">
+      <Text layoutX="177.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NGA UNIVERSITY">
          <font>
             <Font name="Impact" size="45.0" />
          </font>
       </Text>
       <JFXHamburger layoutX="142.0" layoutY="188.0" prefHeight="55.0" prefWidth="106.0" />
+
+      <TextField layoutX="1577.0" layoutY="203.0" prefHeight="40.0" prefWidth="300.0" promptText="Search" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
    </children>
 </AnchorPane>

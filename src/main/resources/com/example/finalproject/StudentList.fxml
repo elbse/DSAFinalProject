@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@StudentL.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.StudentList">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@StudentL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.StudentList">
 
    <children>
 
@@ -26,9 +26,6 @@
                   <Image url="@/path_to_logo.png" />
                </image>
             </ImageView>
-
-
-            <TextField layoutX="1600.0" layoutY="40.0" prefHeight="40.0" prefWidth="300.0" promptText="Search" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
          </children>
       </Pane>
 
@@ -48,7 +45,7 @@
             <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="PROGRAM" />
          </columns>
       </TableView>
-      <Button layoutX="531.0" layoutY="955.0" style="-fx-background-color: yellow; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="ADD STUDENT">
+      <Button layoutX="492.0" layoutY="944.0" style="-fx-background-color: yellow; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="ADD STUDENT">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="24.0">
                <image>
@@ -57,7 +54,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="1238.0" layoutY="963.0" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE STUDENT">
+      <Button layoutX="1174.0" layoutY="940.0" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE STUDENT">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="24.0">
                <image>
@@ -80,5 +77,8 @@
       <Text fill="WHITE" layoutX="145.0" layoutY="273.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black;" text="CCE 001 - FUNDAMENTALS OF PROGRAMMING (12345)" />
       <TextField editable="false" layoutX="249.0" layoutY="194.0" style="-fx-font-size: 18; -fx-background-color: transparent; -fx-text-fill: white;" text="Home &gt; Course List" />
       <JFXHamburger layoutX="85.0" layoutY="183.0" prefHeight="55.0" prefWidth="106.0" />
+
+
+      <TextField layoutX="1580.0" layoutY="203.0" prefHeight="40.0" prefWidth="300.0" promptText="Search" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
    </children>
 </AnchorPane>
