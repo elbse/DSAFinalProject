@@ -21,9 +21,9 @@
 
       <TableView layoutX="104.0" layoutY="301.0" prefHeight="600.0" prefWidth="1700.0" style="-fx-background-color: white; -fx-border-color: #FFD700; -fx-border-width: 2px; -fx-border-radius: 10;">
          <columns>
-            <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="Course Code" />
-            <TableColumn prefWidth="1000" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="Course Title and Description" />
-            <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="No. of Students" />
+            <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="COURSE CODE" />
+            <TableColumn prefWidth="1000" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="COURSE TITLE AND DESCRIPTION" />
+            <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="NO. OF STUDENTS" />
          </columns>
       </TableView>
 
