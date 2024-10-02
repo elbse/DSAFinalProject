@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@CourseL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.MergeList">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@CourseL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.MergeCourseController">
 
    <children>
 
@@ -19,12 +19,8 @@
       <Pane layoutX="0.0" layoutY="0.0" prefHeight="150.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FFD700, #F24E0E);">
          <children>
 
-            <!-- University Logo -->
-            <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="20.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@/path_to_logo.png" />
-               </image>
-            </ImageView>
+
+
          </children>
       </Pane>
 
@@ -35,11 +31,7 @@
          </children></Pane>
 
       <!-- Watermark Logo -->
-      <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="700.0" layoutY="400.0" opacity="0.1" preserveRatio="true">
-         <image>
-            <Image url="@/path_to_logo_watermark.png" />
-         </image>
-      </ImageView>
+
       <TableView layoutX="104.0" layoutY="301.0" prefHeight="722.0" prefWidth="1368.0" style="-fx-background-color: white; -fx-border-color: #FFD700; -fx-border-width: 2px; -fx-border-radius: 10;">
          <columns>
             <TableColumn prefWidth="301.59996795654297" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="COURSE CODE" />
