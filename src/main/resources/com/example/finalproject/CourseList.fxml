@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@CourseL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.CourseList">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@CourseL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.CourseListController">
 
    <children>
 
@@ -29,29 +29,17 @@
 
       <Button layoutX="492.0" layoutY="944.0" style="-fx-background-color: yellow; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="ADD COURSE">
          <graphic>
-            <ImageView fitHeight="24.0" fitWidth="24.0">
-               <image>
-                  <Image url="@/path_to_add_icon.png" />
-               </image>
-            </ImageView>
+
          </graphic>
       </Button>
 
       <Button layoutX="1174.0" layoutY="940.0" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE COURSE">
          <graphic>
-            <ImageView fitHeight="24.0" fitWidth="24.0">
-               <image>
-                  <Image url="@/path_to_delete_icon.png" />
-               </image>
-            </ImageView>
+
          </graphic>
       </Button>
 
-      <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="700.0" layoutY="400.0" opacity="0.1" preserveRatio="true">
-         <image>
-            <Image url="@/path_to_logo_watermark.png" />
-         </image>
-      </ImageView>
+
       <ImageView fitHeight="117.0" fitWidth="189.0" layoutX="16.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Images/AngaUnivLogo.png" />
