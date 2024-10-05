@@ -27,9 +27,49 @@
 .menu-panel:hover {
     -fx-background-color: white;
     -fx-opacity: 0.4;
+    -fx-text-fill: #007bff
 }
 
 .my-button-class{
     font-weight: bolder !important;
     color: blue !important;
-};
+}
+
+.labels {
+-fx-text-fill: #FFFFFF;
+}
+
+.ye{
+ -fx-text-fill: #FFD700;
+}
+
+.fam{
+-fx-font-family: "Tahoma";
+-fx-font-weight: bold;
+-fx-font-size: 40px;
+}
+
+.chart{
+-fx-font-family: "Tahoma";
+-fx-font-weight: bold;
+-fx-font-size: 35px;
+-fx-text-fill: #000080;
+}
+
+.chartText{
+-fx-font-family: "Tahoma";
+-fx-font-weight: bold;
+-fx-font-size: 20px;
+}
+
+.chartTextTwo{
+-fx-font-family: "Tahoma";
+-fx-font-weight: bold;
+-fx-font-size: 40px;
+}
+
+.chap{
+-fx-font-family: "Tahoma";
+-fx-font-weight: bold;
+-fx-font-size: 35px;
+}
