@@ -1,67 +1,57 @@
 package com.example.finalproject;
 
+import java.io.*;
+import java.util.LinkedList;
+
 public class StudentList {
-    private Node<Student> head;
+    private LinkedList<Student> students;
+    private String courseCode;
 
-    public StudentList() {
-        this.head = null;
+    public StudentList(String courseCode) {
+        this.courseCode = courseCode;
+        this.students = new LinkedList<>();
+        loadStudents();
     }
 
-    public void add(Student student) {
-        Node<Student> newNode = new Node<>(student);
-        if (head == null) {
-            head = newNode;
-        } else {
-            Node<Student> current = head;
-            while (current.next != null) {
-                current = current.next;
+    // Load students from a file associated with this.courseCode
+    private void loadStudents() {
+        try (BufferedReader br = new BufferedReader(new FileReader(courseCode + "_students.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length == 4) {
+                    Student student = new Student(data[0], data[1], data[2], data[3]);
+                    students.add(student);
+                }
             }
-            current.next = newNode;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void remove(Student student) {
-        if (head == null) return;
+    public void addStudent(String id, String firstName, String lastName, String program) {
+        Student student = new Student(id, firstName, lastName, program);
+        students.add(student);
+        saveStudents(); // Save to file
+    }
 
-        if (head.data.equals(student)) {
-            head = head.next;
-            return;
-        }
+    public void deleteStudent(String id) {
+        students.removeIf(student -> student.getId().equals(id));
+        saveStudents(); // Save to file
+    }
 
-        Node<Student> current = head;
-        while (current.next != null) {
-            if (current.next.data.equals(student)) {
-                current.next = current.next.next;
-                return;
+    private void saveStudents() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(courseCode + "_students.txt"))) {
+            for (Student student : students) {
+                bw.write(student.getId() + "," + student.getFirstName() + "," + student.getLastName() + "," + student.getProgram());
+                bw.newLine();
             }
-            current = current.next;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public Student[] getStudents() {
-        int size = size();
-        Student[] students = new Student[size];
-        Node<Student> current = head;
-        int index = 0;
-
-        while (current != null) {
-            students[index++] = current.data;
-            current = current.next;
-        }
+    public LinkedList<Student> getStudents() {
         return students;
-    }
-
-    public int size() {
-        int size = 0;
-        Node<Student> current = head;
-        while (current != null) {
-            size++;
-            current = current.next;
-        }
-        return size;
-    }
-
-    public void sortStudents() {
-        // Implement sorting logic here if needed
     }
 }

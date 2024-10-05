@@ -1,74 +1,55 @@
 package com.example.finalproject;
 
+import java.io.*;
+import java.util.LinkedList;
+
 public class CourseList {
-    private Node<Course> head;
+    private LinkedList<Course> courses;
 
     public CourseList() {
-        this.head = null;
+        courses = new LinkedList<>();
+        loadCourses();
     }
 
-    public void add(Course course) {
-        Node<Course> newNode = new Node<>(course);
-        if (head == null) {
-            head = newNode;
-        } else {
-            Node<Course> current = head;
-            while (current.next != null) {
-                current = current.next;
+    // Load courses from a file
+    private void loadCourses() {
+        try (BufferedReader br = new BufferedReader(new FileReader("courses.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length == 4) {
+                    Course course = new Course(data[0], data[1], Integer.parseInt(data[2]), data[3]);
+                    courses.add(course);
+                }
             }
-            current.next = newNode;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void remove(Course course) {
-        if (head == null) return;
+    public void addCourse(String code, String title, int numStudents, String description) {
+        Course course = new Course(code, title, numStudents, description);
+        courses.add(course);
+        saveCourses(); // Save to file
+    }
 
-        if (head.data.equals(course)) {
-            head = head.next;
-            return;
-        }
+    public void deleteCourse(String code) {
+        courses.removeIf(course -> course.getCode().equals(code));
+        saveCourses(); // Save to file
+    }
 
-        Node<Course> current = head;
-        while (current.next != null) {
-            if (current.next.data.equals(course)) {
-                current.next = current.next.next;
-                return;
+    private void saveCourses() {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("courses.txt"))) {
+            for (Course course : courses) {
+                bw.write(course.getCode() + "," + course.getTitle() + "," + course.getNumStudents() + "," + course.getDescription());
+                bw.newLine();
             }
-            current = current.next;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public Course find(String courseCode) {
-        Node<Course> current = head;
-        while (current != null) {
-            if (current.data.getCode().equals(courseCode)) {
-                return current.data;
-            }
-            current = current.next;
-        }
-        return null; // Not found
-    }
-
-    public Course[] getCourses() {
-        int size = size();
-        Course[] courses = new Course[size];
-        Node<Course> current = head;
-        int index = 0;
-
-        while (current != null) {
-            courses[index++] = current.data;
-            current = current.next;
-        }
+    public LinkedList<Course> getCourses() {
         return courses;
-    }
-
-    public int size() {
-        int size = 0;
-        Node<Course> current = head;
-        while (current != null) {
-            size++;
-            current = current.next;
-        }
-        return size;
     }
 }

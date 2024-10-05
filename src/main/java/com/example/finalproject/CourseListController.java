@@ -1,67 +1,151 @@
 package com.example.finalproject;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class CourseListController {
 
     @FXML
-    private TableView<Course> courseTableView; // Your TableView for courses
-    private CourseList courseList; // Your CourseList instance
+    private TextField courseCodeField; // TextField for Course Code input
+    @FXML
+    private TextField courseTitleField; // TextField for Course Title input
+    @FXML
+    private TextField courseDescriptionField; // TextField for Course Description input
+    @FXML
+    private TextField numStudentsField; // TextField for Number of Students input
+
+    @FXML
+    private Button addCourseButton; // Button to add a course
+    @FXML
+    private Button deleteCourseButton; // Button to delete a course
+    @FXML
+    private TableView<Course> courseTable; // Table to display courses
+
+    @FXML
+    private TableColumn<Course, String> courseCodeColumn; // Column for Course Code
+    @FXML
+    private TableColumn<Course, String> courseTitleColumn; // Column for Course Title
+    @FXML
+    private TableColumn<Course, String> courseDescriptionColumn; // Column for Course Description
+    @FXML
+    private TableColumn<Course, Integer> numStudentsColumn; // Column for Number of Students
+
+    private CourseList courseList; // Instance of CourseList
+    private ObservableList<Course> observableCourseList; // ObservableList for TableView
+
+    public CourseListController() {
+        courseList = new CourseList(); // Initialize the CourseList instance
+        observableCourseList = FXCollections.observableArrayList(courseList.getCourses()); // Initialize observable list
+    }
+
+    @FXML
+    public void initialize() {
+        // Initialize columns
+        courseCodeColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
+        courseTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        courseDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        numStudentsColumn.setCellValueFactory(new PropertyValueFactory<>("numStudents"));
+
+        // Set the table items to the observable list
+        courseTable.setItems(observableCourseList);
+
+        // Add a double-click event handler for the course table
+        courseTable.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+                Course selectedCourse = courseTable.getSelectionModel().getSelectedItem();
+                if (selectedCourse != null) {
+                    openStudentList(selectedCourse.getCode());
+                }
+            }
+        });
+    }
 
     // Method to add a course
     @FXML
-    private void addCourseButtonClicked() {
+    private void addCourse() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Add Course");
-        dialog.setHeaderText("Enter Course Details");
+        dialog.setHeaderText("Enter Course Details (Code, Title, Description)");
 
-        dialog.setContentText("Course Code:");
-        Optional<String> courseCode = dialog.showAndWait();
-        if (courseCode.isPresent()) {
-            String code = courseCode.get();
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(details -> {
+            String[] parts = details.split(",");
+            if (parts.length == 3) {
+                String code = parts[0].trim();
+                String title = parts[1].trim();
+                String description = parts[2].trim();
 
-            dialog.setContentText("Course Title:");
-            Optional<String> courseTitle = dialog.showAndWait();
-            dialog.setContentText("Course Description:");
-            Optional<String> courseDescription = dialog.showAndWait();
+                // Validate unique course code
+                for (Course course : observableCourseList) {
+                    if (course.getCode().equalsIgnoreCase(code)) {
+                        System.out.println("Course code already exists.");
+                        return;
+                    }
+                }
 
-            if (courseTitle.isPresent() && courseDescription.isPresent()) {
-                Course newCourse = new Course(code, courseTitle.get(), courseDescription.get());
-                courseList.add(newCourse); // Add the course to your course list
-
-                // Show success message
-                showAlert("Success", "Course added successfully!");
+                // Get student count from StudentList
+                int numStudents = new StudentList(code).getStudents().size();
+                courseList.addCourse(code, title, numStudents, description);
+                observableCourseList.add(new Course(code, title, numStudents, description));
+                clearFields();
             }
-        }
+        });
     }
 
-    // Method to remove a course
+    // Method to delete a course
     @FXML
-    private void deleteCourseButtonClicked() {
-        Course selectedCourse = courseTableView.getSelectionModel().getSelectedItem();
+    private void deleteCourse() {
+        Course selectedCourse = courseTable.getSelectionModel().getSelectedItem();
         if (selectedCourse != null) {
-            courseList.remove(selectedCourse); // Remove from course list
-
-            // Show success message
-            showAlert("Success", "Course removed successfully!");
+            courseList.deleteCourse(selectedCourse.getCode());
+            observableCourseList.remove(selectedCourse); // Update the ObservableList
         } else {
-            showAlert("Error", "Please select a course to delete.");
+            System.out.println("No course selected for deletion.");
         }
     }
 
-    // Helper method to show alerts
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    // Method to clear input fields
+    private void clearFields() {
+        courseCodeField.clear();
+        courseTitleField.clear();
+        courseDescriptionField.clear();
+        numStudentsField.clear();
+    }
+
+    // Method to open the student list for the selected course
+    private void openStudentList(String courseCode) {
+        // Logic to open the student list for the specified course
+        try {
+            // Load the StudentList view and controller
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentList.fxml"));
+            Parent root = loader.load();
+            StudentListController studentListController = loader.getController();
+            studentListController.setCourseCode(courseCode); // Pass the course code to the controller
+
+            // Show the student list scene (you may need to adjust this part based on your scene setup)
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Student List for " + courseCode);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
-
-

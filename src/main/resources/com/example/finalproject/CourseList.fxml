@@ -12,28 +12,29 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@CourseL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.CourseListController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@CourseL.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.CourseListController">
 
    <children>
 
       <Pane layoutX="0.0" layoutY="0.0" prefHeight="150.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FFD700, #AF4909);" />
 
 
-      <TableView layoutX="104.0" layoutY="301.0" prefHeight="600.0" prefWidth="1700.0" style="-fx-background-color: white; -fx-border-color: #FFD700; -fx-border-width: 2px; -fx-border-radius: 10;">
+      <TableView fx:id="courseTable" layoutX="104.0" layoutY="301.0" prefHeight="600.0" prefWidth="1700.0" style="-fx-background-color: white; -fx-border-color: #FFD700; -fx-border-width: 2px; -fx-border-radius: 10;">
          <columns>
-            <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="COURSE CODE" />
-            <TableColumn prefWidth="1000" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="COURSE TITLE AND DESCRIPTION" />
-            <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="NO. OF STUDENTS" />
+            <TableColumn fx:id="courseCodeColumn" prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="COURSE CODE" />
+            <TableColumn fx:id="courseTitleColumn" prefWidth="273.0" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="COURSE TITLE" />
+            <TableColumn fx:id="courseDescriptionColumn" prefWidth="710.0" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="DESCRIPTION" />
+            <TableColumn fx:id="numStudentsColumn" prefWidth="414.0" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="NO. OF STUDENTS" />
          </columns>
       </TableView>
 
-      <Button layoutX="492.0" layoutY="944.0" style="-fx-background-color: yellow; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="ADD COURSE">
+      <Button layoutX="492.0" layoutY="944.0" style="-fx-background-color: yellow; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="ADD COURSE" onAction="#addCourse">
          <graphic>
 
          </graphic>
       </Button>
 
-      <Button layoutX="1174.0" layoutY="940.0" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE COURSE">
+      <Button layoutX="1174.0" layoutY="940.0" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE COURSE" onAction="#deleteCourse" >
          <graphic>
 
          </graphic>

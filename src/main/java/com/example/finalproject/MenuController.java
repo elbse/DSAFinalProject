@@ -1,46 +1,83 @@
 package com.example.finalproject;
 
+
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+
+import java.util.Optional;
 
 public class MenuController {
+    @FXML
+    private AnchorPane Homepage;
 
-    private Stage stage;
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
+    @FXML
+    private void goToCourseList() {
+        try {
+            Stage stage = (Stage) Homepage.getScene().getWindow();
+            AnchorPane courseList = FXMLLoader.load(getClass().getResource("CourseList.fxml"));
+            Scene scene = new Scene(courseList, 1920, 1080);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void goToCourseList() throws IOException {
-        System.out.println("Course List button clicked"); // Debug message
-        loadScene("course-list.fxml");
+    @FXML
+    private void goToStudentList() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Course Code");
+        dialog.setHeaderText("Enter Course Code");
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(code -> {
+            try {
+                Stage stage = (Stage) Homepage.getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentList.fxml"));
+                AnchorPane studentList = loader.load();
+                StudentListController controller = loader.getController();
+                controller.setCourseCode(code); // Set course code for student list
+                Scene scene = new Scene(studentList, 1920, 1080);
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
-    public void goToStudentList() throws IOException {
-        System.out.println("Navigating to Student List"); // Debug message
-        loadScene("student-list.fxml");
+    @FXML
+    private void goToMergeCourse() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Course Title");
+        dialog.setHeaderText("Enter Course Title");
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(title -> {
+            try {
+                Stage stage = (Stage) Homepage.getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("MergeCourse.fxml"));
+                AnchorPane mergeCourse = loader.load();
+                MergeCourse controller = loader.getController();
+                controller.setCourseTitle(title); // Set course title for merging
+                Scene scene = new Scene(mergeCourse, 1920, 1080);
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
-    public void goToMergeCourse() throws IOException {
-        System.out.println("Merging courses..."); // Debug message
-        loadScene("merge-course.fxml");
-    }
 
-    public void exitApp() {
-        System.out.println("Exiting application..."); // Debug message
+    @FXML
+    private void exitApplication() {
+        Stage stage = (Stage) Homepage.getScene().getWindow();
         stage.close();
-    }
-
-    private void loadScene(String fxmlFile) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
 

@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@StudentL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.StudentListController">
+<AnchorPane  prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@StudentL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.StudentListController">
 
    <children>
 
@@ -30,22 +30,23 @@
 
 
 
-      <TableView layoutX="104.0" layoutY="301.0" prefHeight="600.0" prefWidth="1700.0" style="-fx-background-color: white; -fx-border-color: #FFD700; -fx-border-width: 2px; -fx-border-radius: 10;">
+      <TableView fx:id="studentTable" layoutX="104.0" layoutY="301.0" prefHeight="600.0" prefWidth="1700.0" style="-fx-background-color: white; -fx-border-color: #FFD700; -fx-border-width: 2px; -fx-border-radius: 10;">
          <columns>
             <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="STUDENT'S ID" />
             <TableColumn prefWidth="1000" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="STUDENT'S NAME" />
             <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="PROGRAM" />
          </columns>
       </TableView>
-      <Button layoutX="492.0" layoutY="944.0" style="-fx-background-color: yellow; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="ADD STUDENT">
+      <Button layoutX="492.0" layoutY="944.0" style="-fx-background-color: yellow; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="ADD STUDENT" onAction="#addStudent">
          <graphic>
 
          </graphic>
       </Button>
-      <Button layoutX="1174.0" layoutY="940.0" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE STUDENT">
-         <graphic>
+      <Button layoutX="1174.0" layoutY="940.0" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE STUDENT" onAction="#deleteStudent">
 
-         </graphic>
+
+
+
       </Button>
       <ImageView fitHeight="117.0" fitWidth="189.0" layoutX="16.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
          <image>

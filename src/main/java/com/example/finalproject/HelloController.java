@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class HelloController {
     @FXML
-    private Label welcomeText;
+    private Label welcomeText; // Ensure this is linked to an element in your FXML
 
     @FXML
     protected void onHelloButtonClick() {
@@ -33,6 +33,7 @@ public class HelloController {
             Parent menuPanel = fxmlLoader.load();
             Scene scene = new Scene(menuPanel);
             stage.setScene(scene);
+            stage.setResizable(false); // Optional: Prevent resizing if needed
         } catch (IOException e) {
             System.err.println("Error loading menu.fxml: " + e.getMessage()); // More specific error message
             e.printStackTrace();

@@ -3,14 +3,14 @@ package com.example.finalproject;
 public class Course {
     private String code;
     private String title;
+    private int numStudents;
     private String description;
-    private int studentCount; // Keep track of number of students
 
-    public Course(String code, String title, String description) {
+    public Course(String code, String title, int numStudents, String description) {
         this.code = code;
         this.title = title;
+        this.numStudents = numStudents;
         this.description = description;
-        this.studentCount = 0; // Initialize student count to 0
     }
 
     public String getCode() {
@@ -21,29 +21,15 @@ public class Course {
         return title;
     }
 
+    public int getNumStudents() {
+        return numStudents;
+    }
+
+    public void setNumStudents(int numStudents) {
+        this.numStudents = numStudents;
+    }
+
     public String getDescription() {
         return description;
-    }
-
-    public int getStudentCount() {
-        return studentCount; // Return the student count
-    }
-
-    public void addStudent() {
-        studentCount++; // Increment the student count
-    }
-
-    public void removeStudent() {
-        if (studentCount > 0) {
-            studentCount--; // Decrement the student count if greater than 0
-        }
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Course)) return false;
-        Course course = (Course) obj;
-        return code.equals(course.code);
     }
 }
