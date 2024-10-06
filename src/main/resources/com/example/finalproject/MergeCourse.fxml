@@ -51,9 +51,9 @@
       </Text>
       <!-- Course Title Text -->
       <Text fx:id="courseTitleText" fill="WHITE" layoutX="145.0" layoutY="273.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black;" text="" />
-      <TableView layoutX="1504.0" layoutY="303.0" prefHeight="718.0" prefWidth="387.0">
+      <TableView fx:id="courseTitleTable" layoutX="1504.0" layoutY="303.0" prefHeight="718.0" prefWidth="387.0">
         <columns>
-          <TableColumn prefWidth="376.0" text="COURSE LIST" />
+          <TableColumn fx:id="courseTitleColumn" prefWidth="376.0" text="COURSE LIST" />
         </columns>
       </TableView>
 

@@ -49,7 +49,8 @@ public class MergeCourse {
                     setStyle("");
                 } else {
                     setText(status);
-                    setStyle("Mergable".equals(status) ? "-fx-text-fill: green;" : "-fx-text-fill: red;"); // Set colors for status
+                    // Set colors for status
+                    setStyle("Mergable".equals(status) ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
                 }
             }
         });
@@ -61,7 +62,7 @@ public class MergeCourse {
             }
         });
 
-        // Handle selection change to update course title and description
+        // Handle selection change to update course title
         courseTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 updateCourseTitleText(newSelection);
@@ -81,7 +82,7 @@ public class MergeCourse {
         courseTable.setItems(FXCollections.observableArrayList(filteredCourses));
     }
 
-    // Method to set the course title and description
+    // Method to set the course title
     public void setCourseTitle(String title) {
         this.courseTitle = title; // Store the title
         loadCourses(); // Load the courses for this title
@@ -112,7 +113,7 @@ public class MergeCourse {
         }
     }
 
-    // New method to update the Text with course title and description
+    // New method to update the Text with course title
     private void updateCourseTitleText(Course course) {
         String titleText = course.getCode() + " - " + course.getTitle() + " (" + course.getNumStudents() + " Students)";
         courseTitleText.setText(titleText); // Update the Text component

@@ -39,6 +39,10 @@ public class Course {
     public void decrementStudentCount() {
         this.numStudents--;
     }
+
+    public String getStatus() {
+        return numStudents < 50 ? "Mergable" : "Unmergable"; // Return status based on the number of students
+    }
 }
 
 
