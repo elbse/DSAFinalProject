@@ -28,4 +28,9 @@ public class Student {
     public String getProgram() {
         return program;
     }
+
+    // Method to get full name (First Name + Last Name)
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
 }

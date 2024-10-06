@@ -3,10 +3,11 @@ package com.example.finalproject;
 import com.example.finalproject.Student;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
-
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,8 +19,16 @@ import java.util.List;
 import java.util.Optional;
 
 public class StudentListController {
+
     @FXML
     private TableView<Student> studentTable;
+
+    @FXML
+    private TableColumn<Student, String> studentIdColumn;  // Column for Student ID
+    @FXML
+    private TableColumn<Student, String> fullNameColumn;   // Column for Full Name
+    @FXML
+    private TableColumn<Student, String> programColumn;    // Column for Program
 
     @FXML
     private Button addStudentButton;
@@ -34,9 +43,15 @@ public class StudentListController {
 
     @FXML
     private void initialize() {
+        // Initialize the table columns and bind them to the respective fields/methods
+        studentIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));   // Binds to getId()
+        fullNameColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getFullName())); // Binds to getFullName()
+        programColumn.setCellValueFactory(new PropertyValueFactory<>("program"));  // Binds to getProgram()
+
         loadStudents();
+
         // Add sorting mechanism
-        studentTable.getItems().sort(Comparator.comparing(Student::getLastName)); // Sort by last name
+        studentTable.getItems().sort(Comparator.comparing(Student::getLastName));  // Sort by last name
     }
 
     public void setCourseCode(String courseCode) {

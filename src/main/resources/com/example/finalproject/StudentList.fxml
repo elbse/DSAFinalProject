@@ -32,9 +32,9 @@
 
       <TableView fx:id="studentTable" layoutX="104.0" layoutY="301.0" prefHeight="600.0" prefWidth="1700.0" style="-fx-background-color: white; -fx-border-color: #FFD700; -fx-border-width: 2px; -fx-border-radius: 10;">
          <columns>
-            <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="STUDENT'S ID" />
-            <TableColumn prefWidth="1000" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="STUDENT'S NAME" />
-            <TableColumn prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="PROGRAM" />
+            <TableColumn fx:id="studentIdColumn" prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="STUDENT'S ID" />
+            <TableColumn fx:id="fullNameColumn" prefWidth="1000" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="STUDENT'S NAME" />
+            <TableColumn fx:id="programColumn" prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="PROGRAM" />
          </columns>
       </TableView>
       <Button layoutX="492.0" layoutY="944.0" style="-fx-background-color: yellow; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="ADD STUDENT" onAction="#addStudent">
@@ -59,7 +59,7 @@
          </font>
       </Text>
       
-      <Text fill="WHITE" layoutX="145.0" layoutY="273.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black;" text="CCE 001 - FUNDAMENTALS OF PROGRAMMING (12345)" />
+      <Text  fx:id="CourseDEs" fill="WHITE" layoutX="145.0" layoutY="273.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black;" text="CCE 001 - FUNDAMENTALS OF PROGRAMMING (12345)" />
       <TextField editable="false" layoutX="178.0" layoutY="191.0" style="-fx-font-size: 18; -fx-background-color: transparent; -fx-text-fill: white;" text="Home &gt; Student List" />
       <JFXHamburger layoutX="65.0" layoutY="183.0" prefHeight="55.0" prefWidth="106.0" />
 
