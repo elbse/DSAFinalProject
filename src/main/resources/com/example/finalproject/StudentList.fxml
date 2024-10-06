@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane  prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@StudentL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.StudentListController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@StudentL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.StudentListController">
 
    <children>
 
@@ -37,12 +37,12 @@
             <TableColumn fx:id="programColumn" prefWidth="300" style="-fx-alignment: CENTER; -fx-font-size: 18;" text="PROGRAM" />
          </columns>
       </TableView>
-      <Button layoutX="492.0" layoutY="944.0" style="-fx-background-color: yellow; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="ADD STUDENT" onAction="#addStudent">
+      <Button layoutX="492.0" layoutY="944.0" onAction="#addStudent" style="-fx-background-color: yellow; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="ADD STUDENT">
          <graphic>
 
          </graphic>
       </Button>
-      <Button layoutX="1174.0" layoutY="940.0" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE STUDENT" onAction="#deleteStudent">
+      <Button layoutX="1174.0" layoutY="944.0" onAction="#deleteStudent" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE STUDENT">
 
 
 
@@ -66,5 +66,6 @@
 
 
       <TextField layoutX="1580.0" layoutY="203.0" prefHeight="40.0" prefWidth="300.0" promptText="Search" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
+      <Button layoutX="863.0" layoutY="944.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="178.0" style="-fx-background-color: green; -fx-font-size: 24; -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 10;" text="SORT" textFill="#f5f4f4" />
    </children>
 </AnchorPane>
