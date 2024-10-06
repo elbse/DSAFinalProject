@@ -52,4 +52,24 @@ public class CourseList {
     public LinkedList<Course> getCourses() {
         return courses;
     }
+
+    // Method to check if a course code exists
+    public boolean courseExists(String courseCode) {
+        for (Course course : courses) {
+            if (course.getCode().equalsIgnoreCase(courseCode)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Method to check if a course title exists
+    public boolean courseTitleExists(String courseTitle) {
+        for (Course course : courses) {
+            if (course.getTitle().equalsIgnoreCase(courseTitle)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
