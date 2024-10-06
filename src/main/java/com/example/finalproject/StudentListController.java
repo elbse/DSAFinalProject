@@ -32,6 +32,8 @@ public class StudentListController {
     @FXML
     private Button addStudentButton;
     @FXML
+    private Button sortStudentsButton; // Added sort button
+    @FXML
     private Button deleteStudentButton;
     @FXML
     private AnchorPane rootPane;
@@ -106,6 +108,7 @@ public class StudentListController {
             }
         });
     }
+
     private void updateCourseStudentCount() {
         CourseList courseList = new CourseList(); // Get the CourseList
         for (Course course : courseList.getCourses()) {
@@ -117,6 +120,7 @@ public class StudentListController {
         // Save the updated course list back to the file
         courseList.saveCourses(); // Ensure you have a method to save courses
     }
+
     private void saveStudent(Student student) {
         try (FileWriter writer = new FileWriter(courseCode + "_students.txt", true)) {
             writer.write(student.getId() + "," + student.getFirstName() + "," + student.getLastName() + "," + student.getProgram() + "\n");
@@ -157,7 +161,12 @@ public class StudentListController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
-
+    @FXML
+    private void sortStudents() {
+        LinkedList<Student> students = new LinkedList<>(studentTable.getItems()); // Get current items
+        students.sort((s1, s2) -> s1.getLastName().compareToIgnoreCase(s2.getLastName())); // Sort by last name
+        studentTable.getItems().setAll(students); // Update the table view with sorted students
     }
 }
