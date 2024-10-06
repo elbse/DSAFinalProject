@@ -8,14 +8,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Optional;
 
 public class StudentListController {
@@ -32,35 +31,33 @@ public class StudentListController {
 
     @FXML
     private Button addStudentButton;
-
     @FXML
     private Button deleteStudentButton;
-
     @FXML
     private AnchorPane rootPane;
 
+    @FXML
+    private Text CourseDEs; // Reference to the Text element for course details
     private String courseCode;
 
     @FXML
     private void initialize() {
         // Initialize the table columns and bind them to the respective fields/methods
-        studentIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));   // Binds to getId()
-        fullNameColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getFullName())); // Binds to getFullName()
-        programColumn.setCellValueFactory(new PropertyValueFactory<>("program"));  // Binds to getProgram()
+        studentIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        fullNameColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getFullName()));
+        programColumn.setCellValueFactory(new PropertyValueFactory<>("program"));
 
         loadStudents();
-
-        // Add sorting mechanism
-        studentTable.getItems().sort(Comparator.comparing(Student::getLastName));  // Sort by last name
     }
 
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
         loadStudents();
+        updateCourseDetails(); // Call to update the displayed course details
     }
 
     private void loadStudents() {
-        List<Student> students = new ArrayList<>();
+        LinkedList<Student> students = new LinkedList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(courseCode + ".txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -75,35 +72,58 @@ public class StudentListController {
         studentTable.getItems().setAll(students);
     }
 
+    private void updateCourseDetails() {
+        // Update the course text based on the course code
+        CourseList courseList = new CourseList(); // Ensure this retrieves the correct course list
+        for (Course course : courseList.getCourses()) {
+            if (course.getCode().equalsIgnoreCase(courseCode)) {
+                // Set the text of the CourseDEs Text element
+                CourseDEs.setText(course.getTitle() + " - " + course.getDescription() + " (" + course.getCode() + ")");
+                break;  // Break after finding the course
+            }
+        }
+    }
+
     @FXML
     private void addStudent() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Add Student");
         dialog.setHeaderText("Enter Student Details (ID, First Name, Last Name, Program)");
+        dialog.setContentText("Format: Student ID, First Name, Last Name, Program");
 
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(details -> {
             String[] parts = details.split(",");
             if (parts.length == 4) {
-                Student newStudent = new Student(parts[0], parts[1], parts[2], parts[3]);
-                studentTable.getItems().add(newStudent);
-                saveStudent(newStudent);
+                String id = parts[0].trim();
+                String firstName = parts[1].trim();
+                String lastName = parts[2].trim();
+                String program = parts[3].trim();
+
+                // Create a new student object
+                Student newStudent = new Student(id, firstName, lastName, program);
+                addStudentToFile(newStudent);
+                updateCourseStudentCount(); // Update the student count for the course
+                loadStudents(); // Reload the student list to show the newly added student
             } else {
                 System.out.println("Please enter exactly 4 details.");
             }
         });
     }
 
-    @FXML
-    private void deleteStudent() {
-        Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
-        if (selectedStudent != null) {
-            studentTable.getItems().remove(selectedStudent);
-            updateStudentFile();
+    private void updateCourseStudentCount() {
+        CourseList courseList = new CourseList(); // Retrieve the course list
+        for (Course course : courseList.getCourses()) {
+            if (course.getCode().equalsIgnoreCase(courseCode)) {
+                course.setNumStudents(course.getNumStudents() + 1); // Increment student count
+                break; // Break after updating the course
+            }
         }
     }
 
-    private void saveStudent(Student student) {
+
+    private void addStudentToFile(Student student) {
+        // Append the new student data to the file
         try (FileWriter fw = new FileWriter(courseCode + ".txt", true)) {
             fw.write(student.getId() + "," + student.getFirstName() + "," + student.getLastName() + "," + student.getProgram() + "\n");
         } catch (IOException e) {
@@ -111,13 +131,53 @@ public class StudentListController {
         }
     }
 
-    private void updateStudentFile() {
-        try (FileWriter fw = new FileWriter(courseCode + ".txt")) {
-            for (Student student : studentTable.getItems()) {
-                fw.write(student.getId() + "," + student.getFirstName() + "," + student.getLastName() + "," + student.getProgram() + "\n");
+    @FXML
+    private void deleteStudent() {
+        Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
+        if (selectedStudent != null) {
+            removeStudentFromFile(selectedStudent);
+            loadStudents(); // Reload the student list after deletion
+        } else {
+            System.out.println("No student selected for deletion.");
+        }
+    }
+
+    private void removeStudentFromFile(Student student) {
+        LinkedList<Student> students = new LinkedList<>();
+        CourseList courseList = new CourseList(); // Retrieve the course list
+
+        try (BufferedReader br = new BufferedReader(new FileReader(courseCode + ".txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 4 && !parts[0].trim().equals(student.getId())) {
+                    students.add(new Student(parts[0].trim(), parts[1].trim(), parts[2].trim(), parts[3].trim()));
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // Write the updated list back to the file
+        try (FileWriter fw = new FileWriter(courseCode + ".txt")) {
+            for (Student s : students) {
+                fw.write(s.getId() + "," + s.getFirstName() + "," + s.getLastName() + "," + s.getProgram() + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Decrement the student count in the course
+        for (Course course : courseList.getCourses()) {
+            if (course.getCode().equalsIgnoreCase(courseCode)) {
+                course.setNumStudents(course.getNumStudents() - 1); // Decrement student count
+                break; // Break after updating the course
+            }
+        }
+
+
     }
+
+
 }
+

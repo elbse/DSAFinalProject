@@ -1,7 +1,6 @@
 package com.example.finalproject;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Optional;
 
 public class CourseListController {
@@ -47,11 +47,11 @@ public class CourseListController {
     private TableColumn<Course, Integer> numStudentsColumn; // Column for Number of Students
 
     private CourseList courseList; // Instance of CourseList
-    private ObservableList<Course> observableCourseList; // ObservableList for TableView
+    private LinkedList<Course> linkedCourseList; // LinkedList for TableView
 
     public CourseListController() {
         courseList = new CourseList(); // Initialize the CourseList instance
-        observableCourseList = FXCollections.observableArrayList(courseList.getCourses()); // Initialize observable list
+        linkedCourseList = new LinkedList<>(courseList.getCourses()); // Initialize linked list
     }
 
     @FXML
@@ -61,9 +61,9 @@ public class CourseListController {
         courseTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         courseDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         numStudentsColumn.setCellValueFactory(new PropertyValueFactory<>("numStudents"));
-
-        // Set the table items to the observable list
-        courseTable.setItems(observableCourseList);
+        loadCoursesToTable();
+        // Set the table items to the linked list
+        courseTable.setItems(FXCollections.observableArrayList(linkedCourseList));
 
         // Add a double-click event handler for the course table
         courseTable.setOnMouseClicked(event -> {
@@ -92,7 +92,7 @@ public class CourseListController {
                 String description = parts[2].trim();
 
                 // Validate unique course code
-                for (Course course : observableCourseList) {
+                for (Course course : linkedCourseList) {
                     if (course.getCode().equalsIgnoreCase(code)) {
                         System.out.println("Course code already exists.");
                         return;
@@ -102,7 +102,8 @@ public class CourseListController {
                 // Get student count from StudentList
                 int numStudents = new StudentList(code).getStudents().size();
                 courseList.addCourse(code, title, numStudents, description);
-                observableCourseList.add(new Course(code, title, numStudents, description));
+                linkedCourseList.add(new Course(code, title, numStudents, description)); // Update linked list
+                courseTable.getItems().setAll(linkedCourseList); // Refresh table items
                 clearFields();
             }
         });
@@ -114,7 +115,8 @@ public class CourseListController {
         Course selectedCourse = courseTable.getSelectionModel().getSelectedItem();
         if (selectedCourse != null) {
             courseList.deleteCourse(selectedCourse.getCode());
-            observableCourseList.remove(selectedCourse); // Update the ObservableList
+            linkedCourseList.remove(selectedCourse); // Update the LinkedList
+            courseTable.getItems().setAll(linkedCourseList); // Refresh table items
         } else {
             System.out.println("No course selected for deletion.");
         }
@@ -130,7 +132,6 @@ public class CourseListController {
 
     // Method to open the student list for the selected course
     private void openStudentList(String courseCode) {
-        // Logic to open the student list for the specified course
         try {
             // Load the StudentList view and controller
             FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentList.fxml"));
@@ -138,7 +139,7 @@ public class CourseListController {
             StudentListController studentListController = loader.getController();
             studentListController.setCourseCode(courseCode); // Pass the course code to the controller
 
-            // Show the student list scene (you may need to adjust this part based on your scene setup)
+            // Show the student list scene
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -147,5 +148,11 @@ public class CourseListController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void loadCoursesToTable() {
+        linkedCourseList.clear(); // Clear previous entries
+        linkedCourseList.addAll(courseList.getCourses()); // Load courses from the CourseList
+        courseTable.setItems(FXCollections.observableArrayList(linkedCourseList)); // Update table
     }
 }

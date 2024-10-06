@@ -2,33 +2,27 @@ package com.example.finalproject;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.LinkedList;
 
 public class MergeCourse {
+    @FXML
+    private Text courseTitleText; // Reference to the Text component for course title
     @FXML
     private TableView<Course> courseTable; // Table to display courses
     @FXML
     private TableColumn<Course, String> courseCodeColumn; // Column for Course Code
     @FXML
-    private TableColumn<Course, String> courseTitleColumn; // Column for Course Title
-    @FXML
     private TableColumn<Course, Integer> numStudentsColumn; // Column for Number of Students
+    @FXML
+    private TableColumn<Course, String> courseStatusColumn; // Column for Course Status
 
     private CourseList courseList; // Instance of CourseList
+    private String courseTitle; // Store the input course title
 
     public MergeCourse() {
         courseList = new CourseList(); // Initialize the CourseList instance
@@ -38,11 +32,26 @@ public class MergeCourse {
     public void initialize() {
         // Initialize columns
         courseCodeColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
-        courseTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         numStudentsColumn.setCellValueFactory(new PropertyValueFactory<>("numStudents"));
+        courseStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status")); // Connect to the status method
 
         // Load courses into the table
-        courseTable.setItems(FXCollections.observableArrayList(courseList.getCourses()));
+        loadCourses();
+
+        // Set the custom cell factory for the status column
+        courseStatusColumn.setCellFactory(column -> new TableCell<Course, String>() {
+            @Override
+            protected void updateItem(String status, boolean empty) {
+                super.updateItem(status, empty);
+                if (empty || status == null) {
+                    setText(null);
+                    setStyle("");
+                } else {
+                    setText(status);
+                    setStyle("Mergable".equals(status) ? "-fx-text-fill: green;" : "-fx-text-fill: red;"); // Set colors for status
+                }
+            }
+        });
 
         // Handle double-click on course code
         courseTable.setOnMouseClicked(event -> {
@@ -50,22 +59,69 @@ public class MergeCourse {
                 onCourseCodeDoubleClicked();
             }
         });
+
+        // Handle selection change to update course title and description
+        courseTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                updateCourseTitleText(newSelection);
+            }
+        });
+    }
+
+    // Method to load courses based on the title
+    public void loadCourses() {
+        // Filter courses with the given title
+        LinkedList<Course> filteredCourses = new LinkedList<>();
+        for (Course course : courseList.getCourses()) {
+            if (course.getTitle().equals(courseTitle)) {
+                filteredCourses.add(course);
+            }
+        }
+        courseTable.setItems(FXCollections.observableArrayList(filteredCourses));
+    }
+
+    // Method to set the course title and description
+    public void setCourseTitle(String title) {
+        this.courseTitle = title; // Store the title
+        loadCourses(); // Load the courses for this title
+
+        // Find the course that matches the title to get the description
+        Course matchingCourse = null;
+        for (Course course : courseList.getCourses()) {
+            if (course.getTitle().equals(title)) {
+                matchingCourse = course;
+                break;
+            }
+        }
+
+        // Update displayed course title and description if found
+        if (matchingCourse != null) {
+            courseTitleText.setText("Courses for: " + title + " - " + matchingCourse.getDescription());
+        } else {
+            courseTitleText.setText("Courses for: " + title + " - Description not found");
+        }
     }
 
     // Method called on double-clicking a course code
     private void onCourseCodeDoubleClicked() {
         Course selectedCourse = courseTable.getSelectionModel().getSelectedItem();
         if (selectedCourse != null) {
-            List<Course> mergeableCourses = getMergeableCourses(selectedCourse);
+            LinkedList<Course> mergeableCourses = getMergeableCourses(selectedCourse);
             showMergeableCoursesDialog(mergeableCourses, selectedCourse);
         }
     }
 
+    // New method to update the Text with course title and description
+    private void updateCourseTitleText(Course course) {
+        String titleText = course.getCode() + " - " + course.getTitle() + " (" + course.getNumStudents() + " Students)";
+        courseTitleText.setText(titleText); // Update the Text component
+    }
+
     // Function to check mergeable courses
-    private List<Course> getMergeableCourses(Course course) {
-        List<Course> mergeableCourses = new ArrayList<>();
+    private LinkedList<Course> getMergeableCourses(Course course) {
+        LinkedList<Course> mergeableCourses = new LinkedList<>();
         for (Course c : courseList.getCourses()) {
-            if (!c.getCode().equals(course.getCode()) && c.getNumStudents() < 50) {
+            if (!c.getCode().equals(course.getCode()) && c.getNumStudents() < 50 && c.getTitle().equals(course.getTitle())) {
                 mergeableCourses.add(c);
             }
         }
@@ -73,16 +129,18 @@ public class MergeCourse {
     }
 
     // Method to show mergeable courses in a dialog
-    private void showMergeableCoursesDialog(List<Course> mergeableCourses, Course selectedCourse) {
+    private void showMergeableCoursesDialog(LinkedList<Course> mergeableCourses, Course selectedCourse) {
         if (mergeableCourses.isEmpty()) {
             showAlert("No Mergeable Courses", "There are no courses available for merging with " + selectedCourse.getCode());
             return;
         }
 
-        ListView<Course> listView = new ListView<>();
-        listView.getItems().addAll(mergeableCourses);
+        ListView<String> listView = new ListView<>();
+        for (Course course : mergeableCourses) {
+            listView.getItems().add(course.getTitle()); // Add only the course title to the list
+        }
 
-        Dialog<Course> dialog = new Dialog<>();
+        Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Select a Course to Merge");
         dialog.setHeaderText("Select a mergeable course with " + selectedCourse.getCode());
 
@@ -96,17 +154,26 @@ public class MergeCourse {
         // Handle merge action
         dialog.setResultConverter(button -> {
             if (button == mergeButtonType) {
-                return listView.getSelectionModel().getSelectedItem();
+                return listView.getSelectionModel().getSelectedItem(); // Return selected course title
             }
             return null;
         });
 
         // Show dialog and handle the result
-        dialog.showAndWait().ifPresent(courseToMerge -> mergeCourses(selectedCourse, courseToMerge));
+        dialog.showAndWait().ifPresent(courseTitle -> {
+            // Find the selected course based on the title
+            Course courseToMerge = mergeableCourses.stream()
+                    .filter(c -> c.getTitle().equals(courseTitle))
+                    .findFirst()
+                    .orElse(null);
+            mergeCourses(selectedCourse, courseToMerge);
+        });
     }
 
     // Method to merge selected courses
     private void mergeCourses(Course course1, Course course2) {
+        if (course2 == null) return; // No course selected
+
         int totalStudents = course1.getNumStudents() + course2.getNumStudents();
 
         // Check if total is 50 or less for merging
@@ -125,22 +192,16 @@ public class MergeCourse {
     }
 
     // Helper method to show alerts
-    private void showAlert(String title, String message) {
+    private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
-        alert.setContentText(message);
+        alert.setContentText(content);
         alert.showAndWait();
     }
 
-    // Method to update the course list display (if needed)
+    // Method to update the course list after merging
     private void updateCourseList() {
-        courseTable.setItems(FXCollections.observableArrayList(courseList.getCourses()));
-    }
-
-    // Method to set the course title
-    public void setCourseTitle(String title) {
-        // You can implement logic here to use the title if necessary
-        System.out.println("Course Title: " + title); // For debugging
+        loadCourses(); // Reload the courses after merging
     }
 }

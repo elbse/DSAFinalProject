@@ -58,8 +58,9 @@
             <Font name="Impact" size="45.0" />
          </font>
       </Text>
-      
-      <Text  fx:id="CourseDEs" fill="WHITE" layoutX="145.0" layoutY="273.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black;" text="CCE 001 - FUNDAMENTALS OF PROGRAMMING (12345)" />
+
+      <Text fx:id="CourseDEs" fill="WHITE" layoutX="145.0" layoutY="273.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black;" text="CCE 001 - FUNDAMENTALS OF PROGRAMMING (12345)" />
+
       <TextField editable="false" layoutX="178.0" layoutY="191.0" style="-fx-font-size: 18; -fx-background-color: transparent; -fx-text-fill: white;" text="Home &gt; Student List" />
       <JFXHamburger layoutX="65.0" layoutY="183.0" prefHeight="55.0" prefWidth="106.0" />
 
