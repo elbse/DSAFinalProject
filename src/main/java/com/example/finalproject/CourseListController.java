@@ -27,8 +27,6 @@ public class CourseListController {
     private TextField courseTitleField; // TextField for Course Title input
     @FXML
     private TextField courseDescriptionField; // TextField for Course Description input
-    @FXML
-    private TextField numStudentsField; // TextField for Number of Students input
 
     @FXML
     private Button addCourseButton; // Button to add a course
@@ -61,9 +59,8 @@ public class CourseListController {
         courseTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         courseDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         numStudentsColumn.setCellValueFactory(new PropertyValueFactory<>("numStudents"));
+
         loadCoursesToTable();
-        // Set the table items to the linked list
-        courseTable.setItems(FXCollections.observableArrayList(linkedCourseList));
 
         // Add a double-click event handler for the course table
         courseTable.setOnMouseClicked(event -> {
@@ -103,7 +100,7 @@ public class CourseListController {
                 int numStudents = new StudentList(code).getStudents().size();
                 courseList.addCourse(code, title, numStudents, description);
                 linkedCourseList.add(new Course(code, title, numStudents, description)); // Update linked list
-                courseTable.getItems().setAll(linkedCourseList); // Refresh table items
+                loadCoursesToTable(); // Refresh table items
                 clearFields();
             }
         });
@@ -116,7 +113,7 @@ public class CourseListController {
         if (selectedCourse != null) {
             courseList.deleteCourse(selectedCourse.getCode());
             linkedCourseList.remove(selectedCourse); // Update the LinkedList
-            courseTable.getItems().setAll(linkedCourseList); // Refresh table items
+            loadCoursesToTable(); // Refresh table items
         } else {
             System.out.println("No course selected for deletion.");
         }
@@ -127,7 +124,6 @@ public class CourseListController {
         courseCodeField.clear();
         courseTitleField.clear();
         courseDescriptionField.clear();
-        numStudentsField.clear();
     }
 
     // Method to open the student list for the selected course

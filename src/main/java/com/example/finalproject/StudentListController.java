@@ -58,7 +58,7 @@ public class StudentListController {
 
     private void loadStudents() {
         LinkedList<Student> students = new LinkedList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(courseCode + ".txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(courseCode + "_students.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
@@ -73,7 +73,6 @@ public class StudentListController {
     }
 
     private void updateCourseDetails() {
-        // Update the course text based on the course code
         CourseList courseList = new CourseList(); // Ensure this retrieves the correct course list
         for (Course course : courseList.getCourses()) {
             if (course.getCode().equalsIgnoreCase(courseCode)) {
@@ -89,7 +88,6 @@ public class StudentListController {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Add Student");
         dialog.setHeaderText("Enter Student Details (ID, First Name, Last Name, Program)");
-        dialog.setContentText("Format: Student ID, First Name, Last Name, Program");
 
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(details -> {
@@ -100,32 +98,28 @@ public class StudentListController {
                 String lastName = parts[2].trim();
                 String program = parts[3].trim();
 
-                // Create a new student object
+                // Add student to the file and update the linked list
                 Student newStudent = new Student(id, firstName, lastName, program);
-                addStudentToFile(newStudent);
-                updateCourseStudentCount(); // Update the student count for the course
-                loadStudents(); // Reload the student list to show the newly added student
-            } else {
-                System.out.println("Please enter exactly 4 details.");
+                saveStudent(newStudent);
+                updateCourseStudentCount(); // Update course student count after adding the student
+                loadStudents(); // Refresh the student list
             }
         });
     }
-
     private void updateCourseStudentCount() {
-        CourseList courseList = new CourseList(); // Retrieve the course list
+        CourseList courseList = new CourseList(); // Get the CourseList
         for (Course course : courseList.getCourses()) {
             if (course.getCode().equalsIgnoreCase(courseCode)) {
-                course.setNumStudents(course.getNumStudents() + 1); // Increment student count
-                break; // Break after updating the course
+                course.incrementStudentCount(); // Increment student count in Course
+                break;  // Break after finding the course
             }
         }
+        // Save the updated course list back to the file
+        courseList.saveCourses(); // Ensure you have a method to save courses
     }
-
-
-    private void addStudentToFile(Student student) {
-        // Append the new student data to the file
-        try (FileWriter fw = new FileWriter(courseCode + ".txt", true)) {
-            fw.write(student.getId() + "," + student.getFirstName() + "," + student.getLastName() + "," + student.getProgram() + "\n");
+    private void saveStudent(Student student) {
+        try (FileWriter writer = new FileWriter(courseCode + "_students.txt", true)) {
+            writer.write(student.getId() + "," + student.getFirstName() + "," + student.getLastName() + "," + student.getProgram() + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -135,49 +129,35 @@ public class StudentListController {
     private void deleteStudent() {
         Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
         if (selectedStudent != null) {
-            removeStudentFromFile(selectedStudent);
-            loadStudents(); // Reload the student list after deletion
+            removeStudentFromFile(selectedStudent.getId());
+            loadStudents(); // Refresh the student list
         } else {
             System.out.println("No student selected for deletion.");
         }
     }
 
-    private void removeStudentFromFile(Student student) {
+    private void removeStudentFromFile(String studentId) {
         LinkedList<Student> students = new LinkedList<>();
-        CourseList courseList = new CourseList(); // Retrieve the course list
-
-        try (BufferedReader br = new BufferedReader(new FileReader(courseCode + ".txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(courseCode + "_students.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 4 && !parts[0].trim().equals(student.getId())) {
-                    students.add(new Student(parts[0].trim(), parts[1].trim(), parts[2].trim(), parts[3].trim()));
+                if (!parts[0].equals(studentId)) {
+                    students.add(new Student(parts[0], parts[1], parts[2], parts[3]));
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Write the updated list back to the file
-        try (FileWriter fw = new FileWriter(courseCode + ".txt")) {
-            for (Student s : students) {
-                fw.write(s.getId() + "," + s.getFirstName() + "," + s.getLastName() + "," + s.getProgram() + "\n");
+        try (FileWriter writer = new FileWriter(courseCode + "_students.txt")) {
+            for (Student student : students) {
+                writer.write(student.getId() + "," + student.getFirstName() + "," + student.getLastName() + "," + student.getProgram() + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // Decrement the student count in the course
-        for (Course course : courseList.getCourses()) {
-            if (course.getCode().equalsIgnoreCase(courseCode)) {
-                course.setNumStudents(course.getNumStudents() - 1); // Decrement student count
-                break; // Break after updating the course
-            }
-        }
-
 
     }
-
-
 }
-

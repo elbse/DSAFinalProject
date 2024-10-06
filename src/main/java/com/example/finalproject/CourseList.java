@@ -38,11 +38,10 @@ public class CourseList {
         saveCourses(); // Save to file
     }
 
-    private void saveCourses() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("courses.txt"))) {
+    public void saveCourses() {
+        try (FileWriter writer = new FileWriter("courses.txt")) {
             for (Course course : courses) {
-                bw.write(course.getCode() + "," + course.getTitle() + "," + course.getNumStudents() + "," + course.getDescription());
-                bw.newLine();
+                writer.write(course.getCode() + "," + course.getTitle() + "," + course.getNumStudents() + "," + course.getDescription() + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();

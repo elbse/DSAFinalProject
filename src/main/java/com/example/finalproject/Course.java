@@ -32,6 +32,13 @@ public class Course {
     public String getDescription() {
         return description;
     }
+    public void incrementStudentCount() {
+        this.numStudents++;
+    }
 
-
+    public void decrementStudentCount() {
+        this.numStudents--;
+    }
 }
+
+
