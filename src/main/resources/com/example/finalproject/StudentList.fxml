@@ -66,6 +66,6 @@
 
 
       <TextField layoutX="1580.0" layoutY="203.0" prefHeight="40.0" prefWidth="300.0" promptText="Search" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
-      <Button layoutX="863.0" layoutY="944.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="178.0" style="-fx-background-color: green; -fx-font-size: 24; -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 10;" text="SORT" textFill="#f5f4f4" />
+      <Button fx:id="sortStudentsButton" layoutX="863.0" layoutY="944.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="178.0" style="-fx-background-color: green; -fx-font-size: 24; -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 10;" text="SORT" textFill="#f5f4f4" onAction="#sortStudents" />
    </children>
 </AnchorPane>

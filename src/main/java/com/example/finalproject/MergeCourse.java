@@ -7,6 +7,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.io.*;
 import java.util.LinkedList;
 
 public class MergeCourse {
@@ -137,7 +138,7 @@ public class MergeCourse {
 
         ListView<String> listView = new ListView<>();
         for (Course course : mergeableCourses) {
-            listView.getItems().add(course.getTitle()); // Add only the course title to the list
+            listView.getItems().add(course.getCode()); // Add course codes
         }
 
         Dialog<String> dialog = new Dialog<>();
@@ -154,16 +155,16 @@ public class MergeCourse {
         // Handle merge action
         dialog.setResultConverter(button -> {
             if (button == mergeButtonType) {
-                return listView.getSelectionModel().getSelectedItem(); // Return selected course title
+                return listView.getSelectionModel().getSelectedItem(); // Return selected course code
             }
             return null;
         });
 
         // Show dialog and handle the result
-        dialog.showAndWait().ifPresent(courseTitle -> {
-            // Find the selected course based on the title
+        dialog.showAndWait().ifPresent(courseCode -> {
+            // Find the selected course based on the course code
             Course courseToMerge = mergeableCourses.stream()
-                    .filter(c -> c.getTitle().equals(courseTitle))
+                    .filter(c -> c.getCode().equals(courseCode))
                     .findFirst()
                     .orElse(null);
             mergeCourses(selectedCourse, courseToMerge);
@@ -181,6 +182,9 @@ public class MergeCourse {
             // Update the first course to have the new number of students
             course1.setNumStudents(totalStudents);
 
+            // Merge student lists
+            mergeStudentLists(course1.getCode(), course2.getCode());
+
             // Optionally, handle the data from course2 (e.g., remove it from the list)
             courseList.deleteCourse(course2.getCode());
 
@@ -191,17 +195,50 @@ public class MergeCourse {
         }
     }
 
-    // Helper method to show alerts
+    // Method to merge student lists from two course files
+    private void mergeStudentLists(String course1Code, String course2Code) {
+        String course1FilePath = course1Code + "_students.txt";
+        String course2FilePath = course2Code + "_students.txt";
+
+        try {
+            // Read the students from course2
+            LinkedList<String> studentsToMerge = new LinkedList<>();
+            try (BufferedReader br = new BufferedReader(new FileReader(course2FilePath))) {
+                String student;
+                while ((student = br.readLine()) != null) {
+                    studentsToMerge.add(student); // Add each student to the list
+                }
+            }
+
+            // Write merged students to course1
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(course1FilePath, true))) {
+                for (String student : studentsToMerge) {
+                    bw.write(student);
+                    bw.newLine(); // Add newline for each student
+                }
+            }
+
+            // Delete the course2 student file after merging
+            new File(course2FilePath).delete();
+
+        } catch (IOException e) {
+            showAlert("Error", "An error occurred while merging student lists.");
+            e.printStackTrace();
+        }
+    }
+
+    // Helper method to update the course list after merging
+    private void updateCourseList() {
+        // Update the table and possibly refresh data from the file
+        loadCourses();
+        // Add any additional refresh logic as needed
+    }
+
+    // Method to show alerts
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
-        alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
-    }
-
-    // Method to update the course list after merging
-    private void updateCourseList() {
-        loadCourses(); // Reload the courses after merging
     }
 }
