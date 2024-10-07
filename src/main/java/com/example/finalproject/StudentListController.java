@@ -165,8 +165,41 @@ public class StudentListController {
 
     @FXML
     private void sortStudents() {
-        LinkedList<Student> students = new LinkedList<>(studentTable.getItems()); // Get current items
-        students.sort((s1, s2) -> s1.getLastName().compareToIgnoreCase(s2.getLastName())); // Sort by last name
-        studentTable.getItems().setAll(students); // Update the table view with sorted students
+        // Get current items from the TableView
+        LinkedList<Student> students = new LinkedList<>(studentTable.getItems());
+
+        // Sort the students by last name
+        students.sort((s1, s2) -> s1.getLastName().compareToIgnoreCase(s2.getLastName()));
+
+        // Update the TableView with the sorted students
+        studentTable.getItems().setAll(students);
+
+        // Save the sorted students back to the text file
+        saveSortedStudents(students);
+
+        // Update the student count in the course list
+        updateStudentCountInCourse();
+    }
+
+    private void saveSortedStudents(LinkedList<Student> sortedStudents) {
+        try (FileWriter writer = new FileWriter(courseCode + "_students.txt")) {
+            for (Student student : sortedStudents) {
+                writer.write(student.getId() + "," + student.getFirstName() + "," + student.getLastName() + "," + student.getProgram() + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateStudentCountInCourse() {
+        CourseList courseList = new CourseList(); // Get the CourseList
+        for (Course course : courseList.getCourses()) {
+            if (course.getCode().equalsIgnoreCase(courseCode)) {
+                course.setNumStudents(studentTable.getItems().size()); // Set the student count based on the current list size
+                break;  // Break after finding the course
+            }
+        }
+        // Save the updated course list back to the file
+        courseList.saveCourses(); // Ensure you have a method to save courses
     }
 }
