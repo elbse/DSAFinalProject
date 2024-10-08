@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="Homepage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="999.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.MenuController">
+<AnchorPane fx:id="Homepage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="999.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.MenuController">
    <children>
       <Pane fx:id="Pane1" prefHeight="125.0" prefWidth="1929.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FFD700, #AF4909);">
          <children>

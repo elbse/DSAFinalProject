@@ -1,14 +1,19 @@
 package com.example.finalproject;
 
-import com.example.finalproject.Student;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -41,6 +46,9 @@ public class StudentListController {
     @FXML
     private Text CourseDEs; // Reference to the Text element for course details
     private String courseCode;
+
+
+
 
     @FXML
     private void initialize() {
@@ -139,6 +147,24 @@ public class StudentListController {
             System.out.println("No student selected for deletion.");
         }
     }
+
+    @FXML
+    private Button backButton;
+    @FXML
+    private void handleBackButton(ActionEvent event) throws IOException{
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
+        Parent menuParent = loader.load();
+
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        Scene menuScene = new Scene(menuParent);
+        stage.setScene(menuScene);
+        stage.show();;
+    }
+
+
+
 
     private void removeStudentFromFile(String studentId) {
         LinkedList<Student> students = new LinkedList<>();
