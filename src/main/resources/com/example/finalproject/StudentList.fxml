@@ -60,12 +60,14 @@
 
       <Text fx:id="CourseDEs" fill="WHITE" layoutX="145.0" layoutY="273.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black;" text="CCE 001 - FUNDAMENTALS OF PROGRAMMING (12345)" />
 
+      <Button layoutX="863.0" layoutY="944.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="178.0" style="-fx-background-color: green; -fx-font-size: 24; -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 10;" text="SORT" textFill="#f5f4f4" onAction="#sortStudents" />
 
       <TextField layoutX="1580.0" layoutY="203.0" prefHeight="40.0" prefWidth="300.0" promptText="Search" style="-fx-background-radius: 20; -fx-border-radius: 20;" />
       <Button fx:id="backButton" layoutX="103.0" layoutY="176.0" mnemonicParsing="false" onAction="#handleBackButton" styleClass="back" stylesheets="@../../../values/style.css" text="Home">
          <font>
             <Font name="Bell MT" size="18.0" />
          </font></Button>
+
    </children>
 </AnchorPane>
         <!-- . -->

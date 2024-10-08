@@ -67,7 +67,7 @@ public class StudentListController {
     }
 
     private void loadStudents() {
-        LinkedList<Student> students = new LinkedList<>();// R
+        LinkedList<Student> students = new LinkedList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(courseCode + "_students.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {

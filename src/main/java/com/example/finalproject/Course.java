@@ -42,7 +42,5 @@ public class Course {
 
     public String getStatus() {
         return numStudents < 50 ? "Mergable" : "Unmergable"; // Return status based on the number of students
-    }// R
+    }
 }
-
-
