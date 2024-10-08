@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -95,6 +92,17 @@ public class StudentListController {
 
     @FXML
     private void addStudent() {
+        // Check if the student list has reached the maximum of 50 students
+        if (studentTable.getItems().size() >= 50) {
+            // Show a message if the list is full
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("List Full");
+            alert.setHeaderText("Cannot Add Student");
+            alert.setContentText("The student list is full. Maximum 50 students allowed.");
+            alert.showAndWait();
+            return; // Exit the method if the limit is reached
+        }
+
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Add Student");
         dialog.setHeaderText("Enter Student Details (ID, First Name, Last Name, Program)");
@@ -116,6 +124,7 @@ public class StudentListController {
             }
         });
     }
+
 
     private void updateCourseStudentCount() {
         CourseList courseList = new CourseList(); // Get the CourseList
