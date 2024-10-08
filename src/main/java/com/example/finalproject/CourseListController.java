@@ -139,10 +139,16 @@ public class CourseListController {
             stage.setScene(scene);
             stage.setTitle("Student List for " + courseCode);
             stage.show();
+
+            // Close the current course list window
+            Stage currentStage = (Stage) courseTable.getScene().getWindow(); // Get current stage
+            currentStage.close(); // Close the current stage
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     private void loadCoursesToTable() {
         linkedCourseList.clear(); // Clear previous entries
