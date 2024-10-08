@@ -73,3 +73,8 @@
 -fx-font-weight: bold;
 -fx-font-size: 35px;
 }
+
+.back{
+  -fx-background-color: transparent;
+  -fx-text-fill: #FFFFFF;
+}

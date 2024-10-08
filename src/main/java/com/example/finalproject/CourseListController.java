@@ -1,18 +1,15 @@
 package com.example.finalproject;
 
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -46,6 +43,7 @@ public class CourseListController {
 
     private CourseList courseList; // Instance of CourseList
     private LinkedList<Course> linkedCourseList; // LinkedList for TableView
+
 
     public CourseListController() {
         courseList = new CourseList(); // Initialize the CourseList instance
@@ -151,4 +149,24 @@ public class CourseListController {
         linkedCourseList.addAll(courseList.getCourses()); // Load courses from the CourseList
         courseTable.setItems(FXCollections.observableArrayList(linkedCourseList)); // Update table
     }
+
+    @FXML
+    private Button backButton;
+    @FXML
+    private void handleBackButton(ActionEvent event) throws IOException{
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
+        Parent menuParent = loader.load();
+
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        Scene menuScene = new Scene(menuParent);
+        stage.setScene(menuScene);
+        stage.show();;
+    }
+
+
+
+
+
 }
