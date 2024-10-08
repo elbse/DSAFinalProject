@@ -33,26 +33,25 @@ public class CourseListController {
     private TableView<Course> courseTable; // Table to display courses
 
     @FXML
-    private TableColumn<Course, String> courseCodeColumn; // Column for Course Code
+    private TableColumn<Course, String> courseCodeColumn; 
     @FXML
-    private TableColumn<Course, String> courseTitleColumn; // Column for Course Title
+    private TableColumn<Course, String> courseTitleColumn;
     @FXML
-    private TableColumn<Course, String> courseDescriptionColumn; // Column for Course Description
+    private TableColumn<Course, String> courseDescriptionColumn;
     @FXML
-    private TableColumn<Course, Integer> numStudentsColumn; // Column for Number of Students
+    private TableColumn<Course, Integer> numStudentsColumn;
 
     private CourseList courseList; // Instance of CourseList
-    private LinkedList<Course> linkedCourseList; // LinkedList for TableView
+    private LinkedList<Course> linkedCourseList;
 
 
     public CourseListController() {
-        courseList = new CourseList(); // Initialize the CourseList instance
-        linkedCourseList = new LinkedList<>(courseList.getCourses()); // Initialize linked list
+        courseList = new CourseList();
+        linkedCourseList = new LinkedList<>(courseList.getCourses());
     }
 
     @FXML
     public void initialize() {
-        // Initialize columns
         courseCodeColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
         courseTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         courseDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -60,7 +59,6 @@ public class CourseListController {
 
         loadCoursesToTable();
 
-        // Add a double-click event handler for the course table
         courseTable.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
                 Course selectedCourse = courseTable.getSelectionModel().getSelectedItem();
@@ -71,7 +69,6 @@ public class CourseListController {
         });
     }// R
 
-    // Method to add a course
     @FXML
     private void addCourse() {
         TextInputDialog dialog = new TextInputDialog();
@@ -86,7 +83,6 @@ public class CourseListController {
                 String title = parts[1].trim();
                 String description = parts[2].trim();
 
-                // Validate unique course code
                 for (Course course : linkedCourseList) {
                     if (course.getCode().equalsIgnoreCase(code)) {
                         System.out.println("Course code already exists.");
@@ -94,46 +90,40 @@ public class CourseListController {
                     }
                 }
 
-                // Get student count from StudentList
                 int numStudents = new StudentList(code).getStudents().size();
                 courseList.addCourse(code, title, numStudents, description);
-                linkedCourseList.add(new Course(code, title, numStudents, description)); // Update linked list
-                loadCoursesToTable(); // Refresh table items
+                linkedCourseList.add(new Course(code, title, numStudents, description));
+                loadCoursesToTable();
                 clearFields();
             }
         });
     }
 
-    // Method to delete a course
     @FXML
     private void deleteCourse() {
         Course selectedCourse = courseTable.getSelectionModel().getSelectedItem();
         if (selectedCourse != null) {
             courseList.deleteCourse(selectedCourse.getCode());
-            linkedCourseList.remove(selectedCourse); // Update the LinkedList
-            loadCoursesToTable(); // Refresh table items
+            linkedCourseList.remove(selectedCourse);
+            loadCoursesToTable();
         } else {
             System.out.println("No course selected for deletion.");
         }
     }
 
-    // Method to clear input fields
     private void clearFields() {
         courseCodeField.clear();
         courseTitleField.clear();
         courseDescriptionField.clear();
     }
 
-    // Method to open the student list for the selected course
     private void openStudentList(String courseCode) {
         try {
-            // Load the StudentList view and controller
             FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentList.fxml"));
             Parent root = loader.load();
             StudentListController studentListController = loader.getController();
-            studentListController.setCourseCode(courseCode); // Pass the course code to the controller
+            studentListController.setCourseCode(courseCode);
 
-            // Show the student list scene
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -151,9 +141,9 @@ public class CourseListController {
 
 
     private void loadCoursesToTable() {
-        linkedCourseList.clear(); // Clear previous entries
-        linkedCourseList.addAll(courseList.getCourses()); // Load courses from the CourseList
-        courseTable.setItems(FXCollections.observableArrayList(linkedCourseList)); // Update table
+        linkedCourseList.clear();
+        linkedCourseList.addAll(courseList.getCourses());
+        courseTable.setItems(FXCollections.observableArrayList(linkedCourseList));
     }
 
     @FXML

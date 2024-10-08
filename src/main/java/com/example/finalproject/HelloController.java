@@ -11,31 +11,31 @@ import java.io.IOException;
 
 public class HelloController {
     @FXML
-    private Label welcomeText; // Ensure this is linked to an element in your FXML
+    private Label welcomeText;
 
     @FXML
     protected void onHelloButtonClick() {
-        System.out.println("Button clicked!");  // Debug output
+        System.out.println("Button clicked!");
         navigateToMenu();
     }
 
     @FXML
     protected void handleMouseClick(MouseEvent event) {
-        System.out.println("Mouse clicked!");  // Debug output
+        System.out.println("Mouse clicked!");
         navigateToMenu();
     }
 
     private void navigateToMenu() {
-        System.out.println("Navigating to menu..."); // Debug output
+        System.out.println("Navigating to menu...");
         try {
             Stage stage = (Stage) welcomeText.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu.fxml")); // Ensure this path is correct
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu.fxml"));
             Parent menuPanel = fxmlLoader.load();
             Scene scene = new Scene(menuPanel);
             stage.setScene(scene);
-            stage.setResizable(false); // Optional: Prevent resizing if needed
+            stage.setResizable(false);
         } catch (IOException e) {
-            System.err.println("Error loading menu.fxml: " + e.getMessage()); // More specific error message
+            System.err.println("Error loading menu.fxml: " + e.getMessage());
             e.printStackTrace();
         }
     }// R
