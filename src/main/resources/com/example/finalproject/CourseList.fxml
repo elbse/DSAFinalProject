@@ -28,13 +28,13 @@
          </columns>
       </TableView>
 
-      <Button layoutX="492.0" layoutY="944.0" onAction="#addCourse" style="-fx-background-color: yellow; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="ADD COURSE">
+      <Button layoutX="492.0" layoutY="944.0" onAction="#addCourse" prefWidth="206.0" style="-fx-background-color: yellow; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="ADD COURSE">
          <graphic>
 
          </graphic>
       </Button>
 
-      <Button layoutX="1174.0" layoutY="940.0" onAction="#deleteCourse" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE COURSE">
+      <Button layoutX="1174.0" layoutY="944.0" onAction="#deleteCourse" prefWidth="206.0" style="-fx-background-color: red; -fx-font-size: 24; -fx-text-fill: black; -fx-border-radius: 15; -fx-background-radius: 15; -fx-padding: 10;" text="DELETE COURSE">
          <graphic>
 
          </graphic>
