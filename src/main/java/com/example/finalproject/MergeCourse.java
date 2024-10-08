@@ -241,5 +241,5 @@ public class MergeCourse {
         alert.setTitle(title);
         alert.setContentText(content);
         alert.showAndWait();
-    }
+    }// R
 }

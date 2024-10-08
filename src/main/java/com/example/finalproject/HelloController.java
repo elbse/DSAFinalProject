@@ -38,5 +38,5 @@ public class HelloController {
             System.err.println("Error loading menu.fxml: " + e.getMessage()); // More specific error message
             e.printStackTrace();
         }
-    }
+    }// R
 }

@@ -59,7 +59,7 @@ public class StudentListController {
     }
 
     private void loadStudents() {
-        LinkedList<Student> students = new LinkedList<>();
+        LinkedList<Student> students = new LinkedList<>();// R
         try (BufferedReader br = new BufferedReader(new FileReader(courseCode + "_students.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {

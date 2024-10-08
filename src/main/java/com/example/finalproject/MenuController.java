@@ -62,7 +62,7 @@ public class MenuController {
                 // Show error if the course code does not exist
                 showErrorAlert("Invalid Course Code", "Please enter an existing course code.");
             }
-        });
+        });// R
     }
 
     @FXML

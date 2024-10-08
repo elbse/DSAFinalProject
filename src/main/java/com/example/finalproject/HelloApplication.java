@@ -19,7 +19,7 @@ public class HelloApplication extends Application {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace();// R
         }
     }
 

@@ -71,7 +71,7 @@ public class CourseListController {
                 }
             }
         });
-    }
+    }// R
 
     // Method to add a course
     @FXML

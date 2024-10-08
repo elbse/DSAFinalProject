@@ -24,7 +24,7 @@ public class CourseList {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }// R
     }
 
     public void addCourse(String code, String title, int numStudents, String description) {

@@ -26,3 +26,4 @@
       <Button text="Click to Continue" layoutX="40.0" layoutY="100.0" onAction="#onHelloButtonClick"/>
    </children>
 </AnchorPane>
+        <!-- . -->
