@@ -77,4 +77,9 @@
 .back{
   -fx-background-color: transparent;
   -fx-text-fill: #FFFFFF;
+  -fx-font-weight: bold;
+}
+
+.we{
+  -fx-font-weight: bold;
 }

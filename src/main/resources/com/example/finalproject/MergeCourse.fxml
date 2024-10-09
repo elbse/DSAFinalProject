@@ -12,7 +12,7 @@
 
 <!-- . -->
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@CourseL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.MergeCourse">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@CourseL.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.MergeCourse">
 
    <children>
 
@@ -24,9 +24,6 @@
 
          </children>
       </Pane>
-
-      <!-- Pane for Course Title -->
-      <Pane layoutX="110.0" layoutY="160.0" prefHeight="50.0" prefWidth="1700.0" />
 
       <!-- Watermark Logo -->
 
@@ -49,6 +46,11 @@
       </Text>
       <!-- Course Title Text -->
       <Text fx:id="courseTitleText" fill="WHITE" layoutX="145.0" layoutY="273.0" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: black;" text="" />
-      <Button fx:id="homeButton" layoutX="121.0" layoutY="193.0" mnemonicParsing="false" onAction="#handleBackButton" styleClass="back" stylesheets="@../../../values/style.css" text="Home" />
+      <Button fx:id="homeButton" layoutX="150.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="55.0" prefWidth="103.0" styleClass="back" stylesheets="@../../../values/style.css" text="Home" />
+      <ImageView fitHeight="61.0" fitWidth="74.0" layoutX="104.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Images/home.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
