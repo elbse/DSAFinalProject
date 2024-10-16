@@ -10,12 +10,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.File;
 import java.util.LinkedList;
 import java.util.Optional;
 
@@ -38,14 +40,13 @@ public class StudentListController {
     @FXML
     private Button deleteStudentButton;
     @FXML
+    private Button importButton;       // Added import button
+    @FXML
     private AnchorPane rootPane;
 
     @FXML
     private Text CourseDEs; // Reference to the Text element for course details
     private String courseCode;
-
-
-
 
     @FXML
     private void initialize() {
@@ -125,6 +126,38 @@ public class StudentListController {
         });
     }
 
+    @FXML
+    private void importStudents() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Student List");
+
+        // Set the file filter for .txt files
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        // Open the file explorer and let the user select a file
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+
+        if (selectedFile != null) {
+            loadStudentsFromFile(selectedFile);
+        }
+    }
+
+    private void loadStudentsFromFile(File file) {
+        LinkedList<Student> students = new LinkedList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 4) {
+                    students.add(new Student(parts[0], parts[1], parts[2], parts[3]));
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        studentTable.getItems().setAll(students);
+    }
 
     private void updateCourseStudentCount() {
         CourseList courseList = new CourseList(); // Get the CourseList
@@ -159,9 +192,9 @@ public class StudentListController {
 
     @FXML
     private Button backButton;
-    @FXML
-    private void handleBackButton(ActionEvent event) throws IOException{
 
+    @FXML
+    private void handleBackButton(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
         Parent menuParent = loader.load();
 
@@ -169,11 +202,8 @@ public class StudentListController {
 
         Scene menuScene = new Scene(menuParent);
         stage.setScene(menuScene);
-        stage.show();;
+        stage.show();
     }
-
-
-
 
     private void removeStudentFromFile(String studentId) {
         LinkedList<Student> students = new LinkedList<>();
@@ -227,14 +257,15 @@ public class StudentListController {
     }
 
     private void updateStudentCountInCourse() {
-        CourseList courseList = new CourseList(); // Get the CourseList
+        // Update the course student count in the Course List page
+        CourseList courseList = new CourseList();
         for (Course course : courseList.getCourses()) {
             if (course.getCode().equalsIgnoreCase(courseCode)) {
-                course.setNumStudents(studentTable.getItems().size()); // Set the student count based on the current list size
-                break;  // Break after finding the course
+                course.setNumStudents(studentTable.getItems().size());
+                break;  // Exit after updating the student count for the course
             }
         }
-        // Save the updated course list back to the file
-        courseList.saveCourses(); // Ensure you have a method to save courses
+        courseList.saveCourses(); // Ensure that course count updates are saved
     }
 }
+
