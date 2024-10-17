@@ -10,9 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import javafx.scene.text.Text;
 import java.io.*;
 import java.util.LinkedList;
 
@@ -159,10 +158,11 @@ public class MergeCourse {
             mergeCourses(selectedCourse, courseToMerge);
         });
     }
+
     @FXML
     private Button backButton;
     @FXML
-    private void handleBackButton(ActionEvent event) throws IOException{
+    private void handleBackButton(ActionEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
         Parent menuParent = loader.load();
@@ -173,6 +173,7 @@ public class MergeCourse {
         stage.setScene(menuScene);
         stage.show();;
     }
+
     private void mergeCourses(Course course1, Course course2) {
         if (course2 == null) return;
 
@@ -197,6 +198,16 @@ public class MergeCourse {
 
         try {
             LinkedList<String> studentsToMerge = new LinkedList<>();
+
+            // Read students from course 1
+            try (BufferedReader br = new BufferedReader(new FileReader(course1FilePath))) {
+                String student;
+                while ((student = br.readLine()) != null) {
+                    studentsToMerge.add(student);
+                }
+            }
+
+            // Read students from course 2
             try (BufferedReader br = new BufferedReader(new FileReader(course2FilePath))) {
                 String student;
                 while ((student = br.readLine()) != null) {
@@ -204,17 +215,26 @@ public class MergeCourse {
                 }
             }
 
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter(course1FilePath, true))) {
+            // Sort students by last name (assuming format: ID,FirstName,LastName,Program)
+            studentsToMerge.sort((s1, s2) -> {
+                String lastName1 = s1.split(",")[2]; // Extract last name from 3rd position
+                String lastName2 = s2.split(",")[2];
+                return lastName1.compareToIgnoreCase(lastName2);
+            });
+
+            // Write sorted students back to course1 file
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(course1FilePath))) {
                 for (String student : studentsToMerge) {
                     bw.write(student);
                     bw.newLine();
                 }
             }
 
+            // Delete course2 student file after merging
             new File(course2FilePath).delete();
 
         } catch (IOException e) {
-            showAlert("Error", "An error occurred while merging student lists.");
+            showAlert("Error", "An error occurred while merging and sorting student lists.");
             e.printStackTrace();
         }
     }
