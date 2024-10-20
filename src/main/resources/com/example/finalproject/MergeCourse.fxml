@@ -52,5 +52,6 @@
             <Image url="@../../../Images/home.png" />
          </image>
       </ImageView>
+
    </children>
 </AnchorPane>

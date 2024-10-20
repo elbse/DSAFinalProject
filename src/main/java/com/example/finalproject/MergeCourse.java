@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
+
 import java.io.*;
 import java.util.LinkedList;
 
@@ -161,21 +162,24 @@ public class MergeCourse {
 
     @FXML
     private Button backButton;
+
     @FXML
     private void handleBackButton(ActionEvent event) throws IOException {
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("menu.fxml"));
         Parent menuParent = loader.load();
 
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         Scene menuScene = new Scene(menuParent);
         stage.setScene(menuScene);
-        stage.show();;
+        stage.show();
     }
 
     private void mergeCourses(Course course1, Course course2) {
         if (course2 == null) return;
+
+        // Start measuring CPU time
+        long startTime = System.nanoTime();
 
         int totalStudents = course1.getNumStudents() + course2.getNumStudents();
 
@@ -190,6 +194,14 @@ public class MergeCourse {
         } else {
             showAlert("Merge Not Possible", "The total number of students exceeds 50. Merging not allowed.");
         }
+
+        // End measuring CPU time
+        long endTime = System.nanoTime();
+        long duration = endTime - startTime;  // Duration in nanoseconds
+        double seconds = duration / 1_000_000_000.0; // Convert to seconds
+
+        // Show dialog with CPU time
+        showAlert("Merge Completed", "The courses were successfully merged.\nCPU Time: " + seconds + " seconds");
     }
 
     private void mergeStudentLists(String course1Code, String course2Code) {

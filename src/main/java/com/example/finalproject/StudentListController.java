@@ -268,4 +268,3 @@ public class StudentListController {
         courseList.saveCourses(); // Ensure that course count updates are saved
     }
 }
-

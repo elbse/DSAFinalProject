@@ -12,16 +12,14 @@
 
 <!-- . -->
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@StudentL.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.StudentListController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000080;" stylesheets="@StudentL.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.finalproject.StudentListController">
 
    <children>
 
 
       <Pane layoutX="0.0" layoutY="0.0" prefHeight="150.0" prefWidth="1920.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 0%, #FFD700, #F24E0E);">
          <children>
-
-
-
+            <Text fx:id="cpuTimeText" fill="WHITE" layoutX="1663.0" layoutY="89.0" style="-fx-font-size: 20px;" text="CPU Time: 0ms" />
          </children>
       </Pane>
 
@@ -72,6 +70,5 @@
          </image>
       </ImageView>
       <Button layoutX="1598.0" layoutY="206.0" onAction="#importStudents" prefHeight="55.0" prefWidth="206.0" style="-fx-background-color: black; -fx-font-size: 20; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 0; -fx-padding: 10;" styleClass="we" stylesheets="@../../../values/style.css" text="IMPORT" textFill="WHITE" />
-
    </children>
 </AnchorPane>
