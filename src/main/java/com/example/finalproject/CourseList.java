@@ -24,14 +24,27 @@ public class CourseList {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }// R
+        }
     }
 
+    // Original addCourse method
     public void addCourse(String code, String title, int numStudents, String description) {
         Course course = new Course(code, title, numStudents, description);
         courses.add(course);
         saveCourses(); // Save to file
     }
+
+    // New overloaded addCourse method
+    public void addCourse(Course course) {
+        // Check if the course code already exists before adding
+        if (!courseExists(course.getCode())) {
+            courses.add(course);
+            saveCourses(); // Save to file
+        } else {
+            System.out.println("Course with code " + course.getCode() + " already exists. Not added.");
+        }
+    }
+
 
     public void deleteCourse(String code) {
         courses.removeIf(course -> course.getCode().equals(code));

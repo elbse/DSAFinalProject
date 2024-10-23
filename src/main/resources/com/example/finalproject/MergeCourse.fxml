@@ -52,6 +52,7 @@
             <Image url="@../../../Images/home.png" />
          </image>
       </ImageView>
+      <Button layoutX="1598.0" layoutY="206.0" onAction="#importStudents" prefHeight="55.0" prefWidth="206.0" style="-fx-background-color: black; -fx-font-size: 20; -fx-text-fill: white; -fx-border-radius: 15; -fx-background-radius: 0; -fx-padding: 10;" styleClass="we" stylesheets="@../../../values/style.css" text="IMPORT" textFill="WHITE" />
 
    </children>
 </AnchorPane>
